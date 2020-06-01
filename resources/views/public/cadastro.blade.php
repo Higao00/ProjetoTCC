@@ -35,29 +35,33 @@
                     <small>Register to be able to enjoy everything.</small>
                 </h1>
                 <div class="register-content">
-                    <form action="https://seantheme.com/color-admin/admin/html/index.html" method="GET" class="margin-bottom-0">
+                    <form action="{{ route('user.store')}}" method="POST" class="margin-bottom-0">
+                        @csrf 
                         <label class="control-label">Full name<span class="text-danger">*</span></label>
                         <div class="row row-space-10">
                             <div class="col-md-12 m-b-15">
-                                <input type="text" class="form-control" placeholder="First name" required />
+                                <input type="text" class="form-control" name="name" placeholder="First name" required />
                             </div>
                         </div>
+
                         <label class="control-label">Email <span class="text-danger">*</span></label>
                         <div class="row m-b-15">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Email " required />
+                                <input type="text" class="form-control" name="email" placeholder="Email" required />
                             </div>
                         </div>
+
                         <label class="control-label">Document <span class="text-danger">*</span></label>
                         <div class="row m-b-15">
                             <div class="col-md-12">
-                                <input type="text" class="form-control" placeholder="Cpf document" required />
+                                <input type="text" class="form-control" name="document" placeholder="Cpf document" required />
                             </div>
                         </div>
+
                         <label class="control-label">Password <span class="text-danger">*</span></label>
                         <div class="row m-b-15">
                             <div class="col-md-12">
-                                <input type="password" class="form-control" placeholder="Password" required />
+                                <input type="password" class="form-control" name="password" placeholder="Password" required />
                             </div>
                         </div>
                         <div class="register-buttons">

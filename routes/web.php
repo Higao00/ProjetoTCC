@@ -18,3 +18,5 @@ Route::get('/register', function (){
 Route::get('/logoff', function (){
     return view('/');
 });
+
+Route::resource('/user', 'UserController');
