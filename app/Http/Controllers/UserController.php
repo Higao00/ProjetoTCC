@@ -34,6 +34,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if(!($request->input('name') && $request->input('email') && $request->input('document') && $request->input('password'))){
+            return 'Dados Invalidos';
+        }
         dd($request->all());
     }
 
