@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateUser;
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -29,15 +31,17 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StoreUpdateUser  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        if(!($request->input('name') && $request->input('email') && $request->input('document') && $request->input('password'))){
-            return 'Dados Invalidos';
-        }
-        dd($request->all());
+    public function store(StoreUpdateUser $request)
+    {   
+
+        // var_dump($request->all());
+        // die();
+
+        $aux = User::create($request->all());
+        
     }
 
     /**
