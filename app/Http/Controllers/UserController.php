@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateUser;
 use Illuminate\Http\Request;
-use App\User;
+use App\Model\User;
 
 class UserController extends Controller
 {
@@ -32,16 +32,16 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  App\Http\Requests\StoreUpdateUser  $request
+     * @param  App\Http\Requests\Request
      * @return \Illuminate\Http\Response
+     * 
+     * 
      */
     public function store(StoreUpdateUser $request)
     {   
-
-        // var_dump($request->all());
-        // die();
-
         $aux = User::create($request->all());
-        
+        $request->session();
+        return view('public.index');   
     }
 
     /**

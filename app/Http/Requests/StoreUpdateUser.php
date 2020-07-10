@@ -24,10 +24,9 @@ class StoreUpdateUser extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|min:4|max:255',
-            'email' => 'required', 
-            'documento' => 'required|min:11',
+            'documento' => 'required|min:11|max:11',
             'senha' => 'required|min:6',
+            'email' => 'required|unique:users',
         ];
     }
 }
