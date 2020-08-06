@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUpdateUser;
 use Illuminate\Http\Request;
 use App\Model\User;
+use Auth;
+
 
 class UserController extends Controller
 {
@@ -38,10 +40,10 @@ class UserController extends Controller
      * 
      */
     public function store(StoreUpdateUser $request)
-    {   
-        $aux = User::create($request->all());
-        $request->session();
-        return view('public.index');   
+    {
+        $user = User::create($request->all());
+        session(['key' => $user->id]);
+        return redirect("/");
     }
 
     /**
