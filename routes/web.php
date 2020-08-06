@@ -17,3 +17,8 @@ Route::get('/', function () {
     $helloWord = 'Hello Word';
     return view('welcome', compact('helloWord'));
 });
+
+Route::get('/home', function () {
+
+    return view('home');
+});
