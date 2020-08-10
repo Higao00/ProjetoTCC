@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUpdateUser;
 use Illuminate\Http\Request;
-use App\Model\User;
-use Auth;
-
 
 class UserController extends Controller
 {
@@ -33,17 +29,12 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  App\Http\Requests\StoreUpdateUser  $request
-     * @param  App\Http\Requests\Request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
-     * 
-     * 
      */
-    public function store(StoreUpdateUser $request)
+    public function store(Request $request)
     {
-        $user = User::create($request->all());
-        session(['key' => $user->id]);
-        return redirect("/");
+        //
     }
 
     /**

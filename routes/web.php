@@ -22,3 +22,5 @@ Route::get('/home', function () {
 
     return view('home');
 });
+
+Route::resource('/user', 'UserController');
