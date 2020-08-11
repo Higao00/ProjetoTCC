@@ -236,8 +236,8 @@
         <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
             <div class="container-fluid">
 
-                <a class="navbar-brand waves-effect" href="#">
-                    <img src="images/icons/icon-96x96.png" style="width: 45px;" id="icon-mobile">
+                <a class="navbar-brand waves-effect" style="margin: 0px !important;" href="#">
+                    <img src="img/favicon.jpg" style="width: 45px;" id="icon-mobile">
                     <strong class="bold-1" style="color: #ca0303;" id="titulo-mobile">Esporte Para Todos</strong>
                 </a>
 
@@ -257,15 +257,57 @@
                                 <i class="fas fa-home mr-3 suspenso"></i>Home
                             </a>
                         </li>
-                        <li class="nav-item" id="top_receita">
+                        <li class="nav-item">
                             <a href="lista_receita.php?tipo=top_receita" class="nav-link waves-effect bold-1">
                                 <i class="fas fa-star mr-3 suspenso"></i>As Mais Avaliadas
                             </a>
                         </li>
 
-                        <li class="nav-item" id="minhas-receitas">
+                        <li class="nav-item ">
                             <a href="lista_receita.php?tipo=self" class="nav-link waves-effect bold-1">
                                 <i class="fas fa-book-open mr-3 suspenso"></i>Melhor Custo Beneficio
+                            </a>
+                        </li>
+
+                        <li class="nav-item suspenso">
+                            <a href="lista_receita.php?tipo=favoritas" class="nav-link waves-effect bold-1">
+                                <i class="fas fa-star mr-3"></i>Favoritas
+                            </a>
+                        </li>
+
+                        <li class="nav-item suspenso">
+                            <a href="perfil.php" class="nav-link waves-effect bold-1">
+                                <i class="fas fa-user mr-3"></i>Perfil
+                            </a>
+                        </li>
+
+                        <li class="nav-item suspenso">
+                            <a href="" class="nav-link waves-effect bold-1"><i
+                                    class="fas fa-user-plus mr-3"></i>Cadastrar-se
+                            </a>
+                        </li>
+
+                        <li class="nav-item suspenso">
+                            <a href="" class="nav-link waves-effect bold-1"><i
+                                    class="fas fa-user-plus mr-3"></i>Cadastre-se Como Parceiros
+                            </a>
+                        </li>
+
+                        <li class="nav-item suspenso">
+                            <a href="" class="nav-link waves-effect bold-1"><i class="fas fa-sign-in-alt mr-3"></i>Fazer
+                                Login
+                            </a>
+                        </li>
+
+                        <li class="nav-item suspenso">
+                            <a href="#" class="nav-link waves-effect bold-1">
+                                <i class="fas fa-cogs mr-3"></i>Notificações
+                            </a>
+                        </li>
+
+                        <li class="nav-item suspenso">
+                            <a href="#" class="nav-link waves-effect bold-1">
+                                <i class="fas fa-sign-out-alt mr-3"></i>Sair
                             </a>
                         </li>
                     </ul>
@@ -333,15 +375,14 @@
     <!--Main layout-->
     <main class="mx-lg-5">
         <div class="modal fade" id="cadastro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria="true">
-            <div class="modal-dialog form-dark" role="document">
+            <div class="modal-dialog" role="document">
                 <!--Content-->
-                <div class="modal-content card card-image"
-                    style="background-image: url('images/pagina_principal2.jpg');">
-                    <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+                <div class="modal-content">
+                    <div class="text-white rgba-stylish-slight py-5 px-5 z-depth-4">
                         <!--Header-->
                         <div class="modal-header text-center pb-4">
                             <h3 class="modal-title w-100 white-text font-weight-bold" id="myModalLabel">
-                                <strong>Cadastro</strong></h3>
+                                Cadastre-se</h3>
                             <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
                                 <span aria="true">&times;</span>
                             </button>
@@ -350,31 +391,37 @@
                         <div class="modal-body">
                             <!--Body-->
 
-                            <form action="control/usuario.php" method="POST">
+                            <form action="{{ route('user.create') }}" method="POST">
+                                @csrf
                                 <div class="md-form mb-5">
-                                    <input type="text" required id="nome_cad" name="nome"
-                                        class="form-control validate white-text">
-                                    <label for="nome_cad">Nome</label>
+                                    <input type="text" required id="nome_cad" name="nome" class="form-control validate">
+                                    <label for="nome_cad">Namo Completo</label>
                                 </div>
 
                                 <div class="md-form mb-5">
-                                    <input type="email" required id="email_cad" name="email"
-                                        class="form-control validate white-text">
+                                    <input type="text" required id="email_cad" name="email"
+                                        class="form-control validate">
                                     <label for="email_cad">E-mail</label>
                                 </div>
 
                                 <div class="md-form mb-5">
+                                    <input type="text" required id="documento_cad" name="documento"
+                                        class="form-control validate">
+                                    <label for="documento_cad">Documento</label>
+                                </div>
+
+                                <div class="md-form mb-5">
                                     <input type="password" required id="senha_cad" name="senha"
-                                        class="form-control validate white-text">
+                                        class="form-control validate">
                                     <label for="senha_cad">Senha</label>
                                 </div>
 
                                 <!--Grid row-->
                                 <div class="row d-flex align-items-center mb-4">
-
                                     <!--Grid column-->
                                     <div class="text-center mb-3 col-md-12">
-                                        <button type="submit" class="btn btn-amber" name="cadastrar">Cadastrar</button>
+                                        <button type="submit" class="btn btn-outline-primary"
+                                            name="cadastrar">Cadastrar</button>
                                     </div>
                                     <!--Grid column-->
                                 </div>
