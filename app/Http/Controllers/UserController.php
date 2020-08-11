@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserController
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $date = $request->all();
+        $user = \App\Model\User::create($date);
+
+        return view('home');
     }
 
     /**

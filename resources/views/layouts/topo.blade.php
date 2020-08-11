@@ -335,10 +335,11 @@
                 <a href="home.php" class="list-group-item list-group-item-action waves-effect">
                     <i class="fas fa-home mr-3"></i>Home</a>
 
-
-                <a href="lista_receita.php?tipo=favoritas" class="list-group-item list-group-item-action waves-effect">
+                @if(auth()->check())
+                    <a href="lista_receita.php?tipo=favoritas" class="list-group-item list-group-item-action waves-effect">
                     <i class="fas fa-star mr-3"></i>Favoritas
                 </a>
+                @endif
 
                 <a href="perfil.php" class="list-group-item list-group-item-action waves-effect">
                     <i class="fas fa-user mr-3"></i>Perfil
@@ -381,7 +382,8 @@
                     <div class="text-white rgba-stylish-slight py-5 px-5 z-depth-4">
                         <!--Header-->
                         <div class="modal-header text-center pb-4">
-                            <h3 class="modal-title w-100 white-text font-weight-bold" id="myModalLabel">
+                            <h3 class="modal-title w-100 white-text font-weight-bold" id="myModalLabel"
+                                style="color: #4285f4 !important;">
                                 Cadastre-se</h3>
                             <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
                                 <span aria="true">&times;</span>
@@ -391,7 +393,7 @@
                         <div class="modal-body">
                             <!--Body-->
 
-                            <form action="{{ route('user.create') }}" method="POST">
+                            <form action="{{ route('user.store') }}" method="POST">
                                 @csrf
                                 <div class="md-form mb-5">
                                     <input type="text" required id="nome_cad" name="nome" class="form-control validate">
@@ -420,8 +422,7 @@
                                 <div class="row d-flex align-items-center mb-4">
                                     <!--Grid column-->
                                     <div class="text-center mb-3 col-md-12">
-                                        <button type="submit" class="btn btn-outline-primary"
-                                            name="cadastrar">Cadastrar</button>
+                                        <button type="submit" class="btn btn-outline-primary">Cadastrar</button>
                                     </div>
                                     <!--Grid column-->
                                 </div>
@@ -435,15 +436,15 @@
         </div>
 
         <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria="true">
-            <div class="modal-dialog form-dark" role="document">
+            <div class="modal-dialog" role="document">
                 <!--Content-->
-                <div class="modal-content card card-image"
-                    style="background-image: url('images/pagina_principal.jpg');">
-                    <div class="text-white rgba-stylish-strong py-5 px-5 z-depth-4">
+                <div class="modal-content">
+                    <div class="text-white rgba-stylish-slight py-5 px-5 z-depth-4">
                         <!--Header-->
                         <div class="modal-header text-center pb-4">
-                            <h3 class="modal-title w-100 white-text font-weight-bold" id="myModalLabel">
-                                <strong>Entrar</strong></h3>
+                            <h3 class="modal-title w-100 white-text font-weight-bold" id="myModalLabel"
+                                style="color: #4285f4 !important;">
+                                Fazer Login</h3>
                             <button type="button" class="close white-text" data-dismiss="modal" aria-label="Close">
                                 <span aria="true">&times;</span>
                             </button>
@@ -451,24 +452,26 @@
                         <!--Body-->
                         <div class="modal-body">
                             <!--Body-->
-                            <form action="control/usuario.php" method="POST" id="login">
-                                <div class="md-form mb-5">
-                                    <input type="email" id="email_login" name="email" class="form-control white-text">
-                                    <label for="email_login">E-mail</label>
-                                </div>
 
-                                <div class="md-form pb-3">
-                                    <input type="password" id="senha_login" name="senha"
-                                        class="form-control white-text">
-                                    <label for="senha_login">Senha</label>
+                            <form action="{{ route('user.index') }}" method="POST">
+                                @csrf
+                                <div class="md-form mb-5">
+                                    <input type="text" required id="email_cad" name="email"
+                                        class="form-control validate">
+                                    <label for="email_cad">E-mail</label>
+  
+                                <div class="md-form mb-5">
+                                    <input type="password" required id="senha_cad" name="senha"
+                                        class="form-control validate">
+                                    <label for="senha_cad">Senha</label>
                                 </div>
 
                                 <!--Grid row-->
                                 <div class="row d-flex align-items-center mb-4">
-
                                     <!--Grid column-->
                                     <div class="text-center mb-3 col-md-12">
-                                        <button type="submit" name="login" class="btn btn-amber">Entrar</button>
+                                        <button type="submit" class="btn btn-outline-primary"
+                                            name="cadastrar">Entar</button>
                                     </div>
                                     <!--Grid column-->
                                 </div>
