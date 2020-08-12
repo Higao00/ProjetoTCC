@@ -22,4 +22,6 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::resource('/perfil', 'UserController');
+
 Auth::routes();

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Auth;
 
 class UserController
 {
@@ -34,11 +36,6 @@ class UserController
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        $date = $request->all();
-        $user = \App\Model\User::create($date);
-
-        return view('home');
     }
 
     /**
@@ -49,7 +46,8 @@ class UserController
      */
     public function show($id)
     {
-        //
+        $user = Auth::user();
+        return view("perfil", compact("user"));
     }
 
     /**
