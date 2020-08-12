@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,15 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $helloWord = 'Hello Word';
-    return view('welcome', compact('helloWord'));
-});
-
-Route::get('/home', function () {
-
     return view('home');
 });
 
-Route::resource('/user', 'UserController');
+Route::get('/home', function () {
+    return view('home');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
