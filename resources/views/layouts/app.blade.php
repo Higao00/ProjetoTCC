@@ -248,7 +248,7 @@
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a href="home.php" class="nav-link waves-effect bold-1 suspenso">
+                            <a href="{{ route('home.index') }}" class="nav-link waves-effect bold-1 suspenso">
                                 <i class="fas fa-home mr-3 suspenso"></i>Home
                             </a>
                         </li>
@@ -266,7 +266,7 @@
 
                         @if (auth()->check())
                             <li class="nav-item suspenso">
-                                <a href="lista_receita.php?tipo=favoritas" class="nav-link waves-effect bold-1">
+                                <a href="{{ route('favoritas.index') }}" class="nav-link waves-effect bold-1">
                                     <i class="fas fa-star mr-3"></i>Favoritas
                                 </a>
                             </li>
@@ -316,15 +316,15 @@
         <!-- Sidebar -->
         <div class="sidebar-fixed position-fixed">
 
-            <img src="{{ url('img/logo.jpg') }}" id="logo" onclick="window.location='home.php'">
+            <img src="{{ url('img/logo.jpg') }}" id="logo" onclick="window.location='{{ route('home.index') }}'">
 
             <div class="list-group list-group-flush">
 
-                <a href="home.php" class="list-group-item list-group-item-action waves-effect">
+                <a href="{{ route('home.index') }}" class="list-group-item list-group-item-action waves-effect">
                     <i class="fas fa-home mr-3"></i>Home</a>
 
                 @if (auth()->check())
-                    <a href="lista_receita.php?tipo=favoritas"
+                    <a href="{{ route('favoritas.index') }}"
                         class="list-group-item list-group-item-action waves-effect">
                         <i class="fas fa-star mr-3"></i>Favoritas
                     </a>

@@ -18,10 +18,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/home', function () {
-    return view('home');
-});
-
+Route::resource('/home', 'HomeController');
 Route::resource('/perfil', 'UserController');
+Route::resource('/favoritas', 'FavoritasController');
 
 Auth::routes();
