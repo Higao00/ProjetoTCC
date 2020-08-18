@@ -70,7 +70,36 @@ class UserController
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = \App\User::find($id);
+        $data = $request->all();
+
+        if (!empty($request->senha)) {
+            $certo = $user->update(
+                [
+                    'name' => $data['nome'],
+                    'email' => $data['email'],
+                    'password' => $data['senha'],
+                    'documento' => $data['documento']
+                ]
+            );
+        } else {
+            $certo = $user->update(
+                [
+                    'name' => $data['nome'],
+                    'email' => $data['email'],
+                    'documento' => $data['documento']
+                ]
+            );
+        }
+
+        if ($certo) {
+            $mensagem = 'success';
+        } else {
+            $mensagem = 'error';
+        }
+
+
+        return view("perfil", compact("user"))->with('mensagem', $mensagem);
     }
 
     /**

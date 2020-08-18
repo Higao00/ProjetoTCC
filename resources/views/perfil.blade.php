@@ -17,36 +17,49 @@
             <!-- Content -->
             <div class="card-body">
                 <!-- Name -->
-                <h4 class="card-title">{{$user->name}}</h4>
                 <hr>
                 <!-- Card -->
                 <div class="card">
                     <!-- Card body -->
                     <div class="card-body">
+                        @if (!empty($mensagem))
+                            @if ($mensagem == 'error')
+                                <div id="msg" class="alert alert-error">
+                                    <p>Erro, Verifique o Formulario</p>
+                                </div>
+                            @else
+                                <div id="msg" class="alert alert-success">
+                                    <p>Seus Dados Foram Alterados com Sucesso.</p>
+                                </div>
+                            @endif
+                        @endif
+
                         <!-- Material form register -->
-                        <form method="POST" action="{{ route('perfil.update', $user->id)}}">
+                        <form method="POST" action="{{ route('perfil.update', $user->id) }}">
+                            {{ method_field('PUT') }}
+                            {{ csrf_field() }}
                             <!-- Material input text -->
                             <div class="md-form">
                                 <i class="fa fa-user prefix grey-text"></i>
                                 <input type="text" id="nome" required name="nome" class="form-control"
-                                    value="{{$user->name}}">
+                                    value="{{ $user->name }}">
                                 <label for="nome" class="font-weight-light">Seu Nome</label>
                             </div>
 
                             <!-- Material input text -->
                             <div class="md-form">
                                 <i class="fa fa-at prefix grey-text"></i>
-                                <input type="text" id="nome" required name="nome" class="form-control"
-                                    value="{{$user->email}}">
-                                <label for="nome" class="font-weight-light">Seu Email</label>
+                                <input type="text" id="email" required name="email" class="form-control"
+                                    value="{{ $user->email }}">
+                                <label for="email" class="font-weight-light">Seu Email</label>
                             </div>
 
                             <!-- Material input document -->
                             <div class="md-form">
                                 <i class="fa fa-id-card prefix grey-text"></i>
                                 <input type="text" id="documento" required name="documento" class="form-control"
-                                    value="{{$user->documento}}">
-                                <label for="email" class="font-weight-light">Seu Documento</label>
+                                    value="{{ $user->documento }}">
+                                <label for="documento" class="font-weight-light">Seu Documento</label>
                             </div>
 
                             <!-- Material input password -->
@@ -57,8 +70,7 @@
                             </div>
 
                             <div class="text-center py-4 mt-3">
-                                <button class="btn btn-primary" name="update-usuario"
-                                    type="submit">Registrar</button>
+                                <button class="btn btn-primary" name="update-usuario" type="submit">Registrar</button>
                             </div>
                         </form>
                         <!-- Material form register -->
@@ -66,24 +78,9 @@
                     </div>
                     <!-- Card -->
                 </div>
-
             </div>
-
             <!-- Card -->
         </div>
-
-        <!-- FAZER AQUI A INCLUSAO DE SCRIPTS OU SEUS PROPIOS SCRIPTS -->
-        <script>
-            $(document).ready(function() {
-                $('a[href="perfil.php"]').addClass('active');
-            });
-
-            $(document).ready(function() {
-                $('a[href="perfil.php"]').parents('li').addClass('ativo');
-            });
-
-        </script>
-
     </div>
 
 @endsection

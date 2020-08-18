@@ -18,6 +18,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/admin', function () {
+    return view('admin.home');
+});
+
 Route::resource('/home', 'HomeController');
 Route::resource('/perfil', 'UserController');
 Route::resource('/favoritas', 'FavoritasController');
