@@ -18,10 +18,6 @@ class favoritas extends Migration
             $table->integer('id_quadra')->nullable();
             $table->integer('id_user')->nullable();
             $table->timestamps();
-
-            $table->foreign('id_user')->references('id')->on('users');
-            $table->foreign('id_quadra')->references('id')->on('quadra');
-
         });
     }
 

@@ -39,6 +39,7 @@
                             {{ method_field('PUT') }}
                             {{ csrf_field() }}
                             <!-- Material input text -->
+
                             <div class="md-form">
                                 <i class="fa fa-user prefix grey-text"></i>
                                 <input type="text" id="nome" required name="nome" class="form-control"
@@ -69,8 +70,16 @@
                                 <label for="senha" class="font-weight-light">Sua Senha</label>
                             </div>
 
+                            <!-- Default unchecked -->
+                            <div class="md-form">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                                <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                                <label class="custom-control-label" for="defaultUnchecked">Tornar um Colaborador de
+                                    Quadras.</label>
+                            </div>
+
                             <div class="text-center py-4 mt-3">
-                                <button class="btn btn-primary" name="update-usuario" type="submit">Registrar</button>
+                                <button class="btn btn-primary" name="update-usuario" type="submit">Editar</button>
                             </div>
                         </form>
                         <!-- Material form register -->
