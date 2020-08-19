@@ -231,7 +231,7 @@
         <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
             <div class="container-fluid">
 
-                <a class="navbar-brand waves-effect" style="margin: 0px !important;" href="#">
+                <a class="navbar-brand waves-effect" style="margin: 0px !important;" href="{{ route('home.index') }}">
                     <img src="{{ url('img/favicon.jpg') }}" style="width: 45px;" id="icon-mobile">
                     <strong class="bold-1" style="color: #ca0303;" id="titulo-mobile">Esporte Para Todos</strong>
                 </a>
@@ -277,18 +277,28 @@
                                     <i class="fas fa-user mr-3"></i>Perfil
                                 </a>
                             </li>
+
+                            @if (auth()->user()->permissao == 2 || auth()->user()->permissao == 3)
+                                <li class="nav-item suspenso">
+                                    <a href="" class="nav-link waves-effect bold-1"><i
+                                            class="fas fa-plus mr-3"></i>Cadastrar Quadra
+                                    </a>
+                                </li>
+                            @endif
+
+                             @if (auth()->user()->permissao == 3)
+                                <li class="nav-item suspenso">
+                                    <a href="{{ route('admin')}}" class="nav-link waves-effect bold-1"><i
+                                            class="fas fa-user-shield mr-3"></i>Acesso ao Admin
+                                    </a>
+                                </li>
+                            @endif
                         @endif
 
                         @if (!auth()->check())
                             <li class="nav-item suspenso">
                                 <a href="" class="nav-link waves-effect bold-1"><i
                                         class="fas fa-user-plus mr-3"></i>Cadastrar-se
-                                </a>
-                            </li>
-
-                            <li class="nav-item suspenso">
-                                <a href="" class="nav-link waves-effect bold-1"><i
-                                        class="fas fa-user-plus mr-3"></i>Cadastre-se Como Parceiros
                                 </a>
                             </li>
 
@@ -333,16 +343,24 @@
                         class="list-group-item list-group-item-action waves-effect">
                         <i class="fas fa-user mr-3"></i>Perfil
                     </a>
+
+                    @if (auth()->user()->permissao == 2 || auth()->user()->permissao == 3)
+                        <a href="" class="list-group-item list-group-item-action waves-effect"><i class="fas fa-plus mr-3 "></i>Cadastrar Quadra
+                        </a>
+                    @endif
+
+                    @if (auth()->user()->permissao == 3)
+                        <a href="{{ route('admin')}}" class="list-group-item list-group-item-action waves-effect"><i class="fas fa-user-shield mr-3 "></i>Acesso ao Admin
+                        </a>
+                    @endif
+
+                    
                 @endif
 
                 @if (!auth()->check())
 
                     <a href="" class="list-group-item list-group-item-action waves-effect" data-toggle="modal"
                         data-target="#cadastro"><i class="fas fa-user-plus mr-3"></i>Cadastrar-se
-                    </a>
-
-                    <a href="" class="list-group-item list-group-item-action waves-effect" data-toggle="modal"
-                        data-target="#cadastro"><i class="fas fa-user-plus mr-3"></i>Cadastre-se Como Parceiros
                     </a>
 
                     <a href="" class="list-group-item list-group-item-action waves-effect" data-toggle="modal"

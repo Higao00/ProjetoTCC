@@ -17,7 +17,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return $this->permissao == 2; // Coluna permissaão == 2 usuario é ADMIN
+        return $this->permissao == 3; // Coluna permissaão == 2 usuario é ADMIN
     }
     
     protected $fillable = [

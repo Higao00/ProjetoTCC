@@ -70,12 +70,13 @@
                                 <label for="senha" class="font-weight-light">Sua Senha</label>
                             </div>
 
-                            <!-- Default unchecked -->
+                            <!-- Material input document -->
                             <div class="md-form">
-                                <i class="fas fa-chalkboard-teacher"></i>
-                                <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
-                                <label class="custom-control-label" for="defaultUnchecked">Tornar um Colaborador de
-                                    Quadras.</label>
+                                <i class="fa fa-chalkboard-teacher prefix grey-text"></i>
+                                <label for="termo" class="font-weight-light">&nbsp
+                                    <input type="checkbox" data-toggle="modal" data-target="#informativo" name="termo" @if ($user->permissao == 2) checked @endif/>
+                                    Tornar-se um Colaborador
+                                </label>
                             </div>
 
                             <div class="text-center py-4 mt-3">
@@ -91,5 +92,30 @@
             <!-- Card -->
         </div>
     </div>
+
+    
+    {{-- MODAL DO INFORMATIVO --}}
+    <!-- To change the direction of the modal animation change .right class -->
+    <div class="modal fade right" id="informativo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+
+        <!-- Add class .modal-side and then add class .modal-top-right (or other classes from list above) to set a position to the modal -->
+        <div class="modal-dialog modal-side modal-top-right" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title w-100" id="myModalLabel">TERMO DE RESPONSABILIDADE</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Atenção, marcando esse campo você se tornando um colaborador, estará de acordo com todas as
+                    responsabilidades de um colaborador.
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Side Modal Top Right -->
+
 
 @endsection

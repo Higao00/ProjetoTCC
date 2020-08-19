@@ -18,16 +18,13 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/admin', function () {
-    return view('admin.home');
-});
-
 Route::resource('/home', 'HomeController');
 Route::resource('/perfil', 'UserController');
 Route::resource('/favoritas', 'FavoritasController');
+Route::resource('/suspenderUser', 'SuspenderUser');
 
 Auth::routes();
 
-Route::get('/admin', 'AdminController@admin')    
-    ->middleware('is_admin')    
+Route::get('/admin', 'AdminController@admin')
+    ->middleware('is_admin')
     ->name('admin');
