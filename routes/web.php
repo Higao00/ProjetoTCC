@@ -27,3 +27,7 @@ Route::resource('/perfil', 'UserController');
 Route::resource('/favoritas', 'FavoritasController');
 
 Auth::routes();
+
+Route::get('/admin', 'AdminController@admin')    
+    ->middleware('is_admin')    
+    ->name('admin');

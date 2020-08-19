@@ -14,6 +14,12 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    public function isAdmin()
+    {
+        return $this->permissao == 2; // Coluna permissaão == 2 usuario é ADMIN
+    }
+    
     protected $fillable = [
         'name',
         'email',
