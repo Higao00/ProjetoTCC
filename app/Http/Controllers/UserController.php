@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Auth;
+use App\User;
 
 class UserController
 {
@@ -70,7 +71,7 @@ class UserController
      */
     public function update(Request $request, $id)
     {
-        $user = \App\User::find($id);
+        $user = User::find($id);
         $data = $request->all();
 
         if (!empty($request->termo)) {

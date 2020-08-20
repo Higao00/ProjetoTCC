@@ -39,7 +39,7 @@
                 <div class="card-body card-body-cascade">
                     <!--Title-->
                     <h4 class="card-title">SUSPENDER QUADRA</h4>
-                    <a href="" class="btn btn-outline-primary waves-effect">Editar</a>
+                    <a href="{{ route('suspenderQuadra.index') }}" class="btn btn-outline-primary waves-effect">Editar</a>
                 </div>
                 <!--/.Card content-->
 

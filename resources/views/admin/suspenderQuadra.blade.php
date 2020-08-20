@@ -1,41 +1,44 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="card testimonial-card" style="margin-top: 4%;">
         <div class="table-responsive">
             @if (!empty($mensagem))
                 @if ($mensagem == 'error')
                     <div id="msg" class="alert alert-error">
-                        <p>Erro, Usuario não foi suspenso.</p>
+                        <p>Erro, Quadra não foi suspensa.</p>
                     </div>
                 @else
                     <div id="msg" class="alert alert-success">
-                        <p>Usuario Suspenso Com Sucesso.</p>
+                        <p>A Quadra Foi Suspensa Com Sucesso.</p>
                     </div>
                 @endif
             @endif
             <table class="table">
                 <thead class="black white-text">
                     <tr>
-                        <th scope="col">NOME</th>
-                        <th scope="col">EMAIL</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">TITULO</th>
+                        <th scope="col">ENDEREÇO</th>
+                        <th scope="col">USUARIO</th>
                         <th scope="col">STATUS</th>
-                        <th scope="col">PERMISÂO</th>
                         <th scope="col">SUSPENDER</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @for ($i = 0; $i < count($quadras); $i++)
                         <tr>
-                            <th> {{ $user->name }}</th>
-                            <th> {{ $user->email }}</th>
-                            <th> {{ $user->status }}</th>
-                            <th> {{ $user->permissao }}</th>
-                            <th> <a href="{{ route('suspenderUser.edit', $user->id) }}"><i
+                            {{-- {{ $id_quadra = $quadras[$i]['id'] }} --}}
+                            <th> {{ $quadras[$i]['id']}}</th>
+                            <th> {{ $quadras[$i]['titulo'] }}</th>
+                            <th> {{ $quadras[$i]['nome_quadra'] }}</th>
+                            <th> {{ $quadras[$i]['owner_id'] }}</th>
+                            <th> {{ $quadras[$i]['status'] }}</th>
+
+                            <th> <a href="{{ route('suspenderQuadra.edit', $quadras[$i]['id']) }}"><i
                                         class="far fa-times-circle fa-2x"></i></a></th>
                         </tr>
-                    @endforeach
+                    @endfor
                 </tbody>
             </table>
         </div>

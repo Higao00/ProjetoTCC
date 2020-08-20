@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Endereco;
 use Illuminate\Support\Facades\App;
-use Auth;
-use App\User;
+use Illuminate\Http\Request;
 
-class SuspenderUser extends Controller
+class EnderecoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,7 @@ class SuspenderUser extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view("admin.suspenderUser", compact("users"));
+        //
     }
 
     /**
@@ -44,59 +42,45 @@ class SuspenderUser extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Endereco  $endereco
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Endereco $endereco)
     {
-        //
+        $endereco = \App\Endereco::find($endereco);
+        return $endereco;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Endereco  $endereco
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Endereco $endereco)
     {
-        $user = User::find($id);
-
-        $certo = $user->update(
-            [
-                'status' => '0',
-            ]
-        );
-
-        if ($certo) {
-            $mensagem = 'success';
-        } else {
-            $mensagem = 'error';
-        }
-
-        $users = User::all();
-
-        return view("admin.suspenderUser", compact("users"))->with('mensagem', $mensagem);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Endereco  $endereco
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Endereco $endereco)
     {
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Endereco  $endereco
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Endereco $endereco)
     {
         //
     }

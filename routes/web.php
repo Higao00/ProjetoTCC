@@ -22,6 +22,10 @@ Route::resource('/home', 'HomeController');
 Route::resource('/perfil', 'UserController');
 Route::resource('/favoritas', 'FavoritasController');
 Route::resource('/suspenderUser', 'SuspenderUser');
+Route::resource('/suspenderQuadra', 'QuadraController');
+Route::resource('/endereco', 'EnderecoController');
+
+
 
 Auth::routes();
 

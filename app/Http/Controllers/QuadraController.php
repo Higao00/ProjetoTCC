@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Auth;
+use App\Quadra;
+use App\Endereco;
 use App\User;
+use Illuminate\Support\Facades\App;
+use Illuminate\Http\Request;
 
-class SuspenderUser extends Controller
+class QuadraController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,23 @@ class SuspenderUser extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view("admin.suspenderUser", compact("users"));
+        $data = Quadra::all();
+
+        for ($i = 0; $i < count($data); $i++) {
+            $endereco = Endereco::find($data[$i]->endereco_id);
+            $user = User::find($data[$i]->owner_id);
+
+            $quadras[] = [
+                'id' => $data[$i]->id,
+                'titulo' => $data[$i]->titulo,
+                'nome_quadra' => $endereco->rua . ' - ' . $endereco->bairro,
+                'valor_aluguel' => $data[$i]->valor_aluguel,
+                'owner_id' => $user->name,
+                'status' => $data[$i]->status
+            ];
+        }
+
+        return view('admin.suspenderQuadra', compact('quadras'));
     }
 
     /**
@@ -44,10 +60,10 @@ class SuspenderUser extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Quadra  $quadra
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Quadra $quadra)
     {
         //
     }
@@ -55,18 +71,14 @@ class SuspenderUser extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Quadra  $quadra
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $quadra = Quadra::find($id);
 
-        $certo = $user->update(
-            [
-                'status' => '0',
-            ]
-        );
+        $certo = $quadra->update(['status' => '0',]);
 
         if ($certo) {
             $mensagem = 'success';
@@ -74,29 +86,30 @@ class SuspenderUser extends Controller
             $mensagem = 'error';
         }
 
-        $users = User::all();
+        $quadras = Quadra::all();
 
-        return view("admin.suspenderUser", compact("users"))->with('mensagem', $mensagem);
+        return view("admin.suspenderQuadra", compact("quadras"))->with('mensagem', $mensagem);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Quadra  $quadra
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Quadra $quadra)
     {
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Quadra  $quadra
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Quadra $quadra)
     {
         //
     }

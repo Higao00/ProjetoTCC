@@ -286,9 +286,9 @@
                                 </li>
                             @endif
 
-                             @if (auth()->user()->permissao == 3)
+                            @if (auth()->user()->permissao == 3)
                                 <li class="nav-item suspenso">
-                                    <a href="{{ route('admin')}}" class="nav-link waves-effect bold-1"><i
+                                    <a href="{{ route('admin') }}" class="nav-link waves-effect bold-1"><i
                                             class="fas fa-user-shield mr-3"></i>Acesso ao Admin
                                     </a>
                                 </li>
@@ -345,16 +345,18 @@
                     </a>
 
                     @if (auth()->user()->permissao == 2 || auth()->user()->permissao == 3)
-                        <a href="" class="list-group-item list-group-item-action waves-effect"><i class="fas fa-plus mr-3 "></i>Cadastrar Quadra
+                        <a href="" class="list-group-item list-group-item-action waves-effect"><i
+                                class="fas fa-plus mr-3 "></i>Cadastrar Quadra
                         </a>
                     @endif
 
                     @if (auth()->user()->permissao == 3)
-                        <a href="{{ route('admin')}}" class="list-group-item list-group-item-action waves-effect"><i class="fas fa-user-shield mr-3 "></i>Acesso ao Admin
+                        <a href="{{ route('admin') }}" class="list-group-item list-group-item-action waves-effect"><i
+                                class="fas fa-user-shield mr-3 "></i>Acesso ao Admin
                         </a>
                     @endif
 
-                    
+
                 @endif
 
                 @if (!auth()->check())
@@ -623,8 +625,21 @@
     <script type="text/javascript" src="{{ url('js/mdb.min.js') }}"></script>
     <script src="{{ url('js/sweetalert2.min.js') }} "></script>
     <script src="{{ url('js/dropzone.min.js') }}"></script>
-
     <script src="{{ url('js/main.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+    <script>
+        var options = {
+            onKeyPress: function(cpf, ev, el, op) {
+                var masks = ['000.000.000-000', '00.000.000/0000-00'];
+                $('#documento').mask((cpf.length > 14) ? masks[1] : masks[0], op);
+            }
+        }
+
+        $('#documento').length > 11 ? $('#documento').mask('00.000.000/0000-00', options) : $('#documento').mask(
+            '000.000.000-00#', options);
+
+    </script>
 </body>
 
 </html>

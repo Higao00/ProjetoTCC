@@ -13,7 +13,7 @@ class CreateQuadra extends Migration
      */
     public function up()
     {
-        Schema::create('quadra', function (Blueprint $table) {
+        Schema::create('quadras', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
             $table->integer('endereco_id');
@@ -31,6 +31,6 @@ class CreateQuadra extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quadra');
+        Schema::dropIfExists('quadras');
     }
 }
