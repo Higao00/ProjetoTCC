@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="card testimonial-card" style="margin-top: 4%;">
+    <div class="card testimonial-card" style="margin-top: 1%;">
         <div class="table-responsive">
             <table class="table">
                 <thead class="black white-text">
