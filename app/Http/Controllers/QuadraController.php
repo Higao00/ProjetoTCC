@@ -78,7 +78,11 @@ class QuadraController extends Controller
     {
         $quadra = Quadra::find($id);
 
-        $certo = $quadra->update(['status' => '0',]);
+        if ($quadra->status == 0) {
+            $certo = $quadra->update(['status' => '1',]);
+        } else {
+            $certo = $quadra->update(['status' => '0',]);
+        }
 
         if ($certo) {
             $mensagem = 'success';

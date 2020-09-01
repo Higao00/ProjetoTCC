@@ -62,11 +62,19 @@ class SuspenderUser extends Controller
     {
         $user = User::find($id);
 
-        $certo = $user->update(
-            [
-                'status' => '0',
-            ]
-        );
+        if ($user->status == 0) {
+            $certo = $user->update(
+                [
+                    'status' => '1',
+                ]
+            );
+        } else {
+            $certo = $user->update(
+                [
+                    'status' => '0',
+                ]
+            );
+        }
 
         if ($certo) {
             $mensagem = 'success';
