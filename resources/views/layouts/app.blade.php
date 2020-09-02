@@ -286,6 +286,15 @@
                                 </li>
                             @endif
 
+                            @if (auth()->user()->permissao == 2 || auth()->user()->permissao == 3)
+                                <li class="nav-item suspenso">
+                                    <a href="{{ route('quadras.show', Auth::user()->id) }}"
+                                        class="nav-link waves-effect bold-1"><i class="fas fa-eye mr-3"></i>Suas
+                                        Quadras
+                                    </a>
+                                </li>
+                            @endif
+
                             @if (auth()->user()->permissao == 3)
                                 <li class="nav-item suspenso">
                                     <a href="{{ route('admin') }}" class="nav-link waves-effect bold-1"><i
@@ -348,6 +357,13 @@
                         <a href="{{ route('quadras.index') }}"
                             class="list-group-item list-group-item-action waves-effect"><i
                                 class="fas fa-plus mr-3 "></i>Cadastrar Quadra
+                        </a>
+                    @endif
+
+                    @if (auth()->user()->permissao == 2 || auth()->user()->permissao == 3)
+                        <a href="{{ route('quadras.show', Auth::user()->id) }}"
+                            class="list-group-item list-group-item-action waves-effect"><i
+                                class="fas fa-eye mr-3"></i>Suas Quadras
                         </a>
                     @endif
 
@@ -646,7 +662,7 @@
 
     {{-- Api cep --}}
     <script>
-    jQuery("#campoCep").mask("99999-999");
+        jQuery("#campoCep").mask("99999-999");
 
         $(document).ready(function() {
             $("#campoCep").blur(function() {

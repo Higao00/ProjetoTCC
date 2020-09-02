@@ -2,6 +2,17 @@
 
 @section('content')
     <div class="card mx-xl-5" style="margin-top: 1%;">
+        @if (!empty($mensagem))
+            @if ($mensagem == 'error')
+                <div id="msg" class="alert alert-error">
+                    <p>Erro, Contate o Administrador.</p>
+                </div>
+            @else
+                <div id="msg" class="alert alert-success">
+                    <p>Sucesso Os Dados Foram Salvos.</p>
+                </div>
+            @endif
+        @endif
         <div class="card-body">
             <form action="{{ route('storeQuadra.store') }}" method="POST">
                 @csrf
@@ -29,6 +40,10 @@
 
                 <label for="campoEstado" class="grey-text font-weight-light">ESTADO</label>
                 <input type="text" id="campoEstado" name="estado" class="form-control">
+                <br>
+
+                <label for="campoComplemento" class="grey-text font-weight-light">COMPLEMENTO</label>
+                <input type="text" id="campoComplemento" name="complemento" class="form-control">
                 <br>
 
                 <label for="campoNumero" class="grey-text font-weight-light">NUMERO</label>

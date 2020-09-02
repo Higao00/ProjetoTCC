@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Quadra;
 use App\Endereco;
 use App\User;
+use Auth;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 
@@ -54,7 +55,33 @@ class QuadraController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
+        $user = Auth::user();
+        $endereco = Endereco::create([
+            'cep' => $request->cep,
+            'rua' => $request->rua,
+            'bairro' => $request->bairro,
+            'numero' => $request->numero,
+            'complemento' => $request->complemento,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado
+        ]);
+
+        $certo = Quadra::create([
+            'titulo' => $request->titulo,
+            'endereco_id' => $endereco->id,
+            'valor_aluguel' => $request->valorHora,
+            'owner_id' => $user->id,
+            'status' => 1
+        ]);
+
+        if ($certo) {
+            $mensagem = 'success';
+        } else {
+            $mensagem = 'error';
+        }
+
+        return view("adicionarQuadras")->with('mensagem', $mensagem);
     }
 
     /**
@@ -63,7 +90,7 @@ class QuadraController extends Controller
      * @param  \App\Quadra  $quadra
      * @return \Illuminate\Http\Response
      */
-    public function show(Quadra $quadra)
+    public function show($id)
     {
         //
     }
@@ -113,7 +140,7 @@ class QuadraController extends Controller
      * @param  \App\Quadra  $quadra
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Quadra $quadra)
+    public function destroy($id)
     {
         //
     }

@@ -39,9 +39,9 @@
                                 <th> {{ $quadras[$i]['status'] }}</th>
 
                                 <th> <a href="{{ route('suspenderQuadra.edit', $quadras[$i]['id']) }}"><i
-                                            style="color: #f0010c" class="fas fa-times fa-2x"></a></th>
+                                            style="color: #f0010c" class="fas fa-times "></a></th>
                                 <th> <a href="{{ route('suspenderQuadra.edit', $quadras[$i]['id']) }}"><i
-                                            style="color: #4ee44e" class="fas fa-check fa-2x"></i></a></th>
+                                            style="color: #4ee44e" class="fas fa-check "></i></a></th>
                             </tr>
                         @else
                             <tr style="background-color: #ddffcc">
@@ -52,9 +52,9 @@
                                 <th> {{ $quadras[$i]['status'] }}</th>
 
                                 <th> <a href="{{ route('suspenderQuadra.edit', $quadras[$i]['id']) }}"><i
-                                            style="color: #f0010c" class="fas fa-times fa-2x"></a></th>
+                                            style="color: #f0010c" class="fas fa-times "></a></th>
                                 <th> <a href="{{ route('suspenderQuadra.edit', $quadras[$i]['id']) }}"><i
-                                            style="color: #4ee44e" class="fas fa-check fa-2x"></i></a></th>
+                                            style="color: #4ee44e" class="fas fa-check "></i></a></th>
                             </tr>
                         @endif
                     @endfor

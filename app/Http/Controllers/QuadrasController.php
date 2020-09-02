@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Quadra;
+use App\Endereco;
+use App\User;
 
 class QuadrasController extends Controller
 {
@@ -45,7 +48,17 @@ class QuadrasController extends Controller
      */
     public function show($id)
     {
-        //
+        $quadras = Quadra::where('owner_id', $id)->get();
+        foreach ($quadras->all() as $quadra) {
+            $endereco = Endereco::find($quadra->endereco_id);
+            $todas[] = [
+                'titulo' => $quadra->titulo,
+                'valorHora' => 'R$ ' . $quadra->valor_aluguel . ',00',
+                'id' => $quadra->id,
+                'endereco' => $endereco->rua . ' - ' . $endereco->cidade . ',' . $endereco->estado,
+            ];
+        }
+        return view('todasQuadras', compact('todas'));
     }
 
     /**
