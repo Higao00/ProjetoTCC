@@ -53,9 +53,16 @@ class QuadrasController extends Controller
             $endereco = Endereco::find($quadra->endereco_id);
             $todas[] = [
                 'titulo' => $quadra->titulo,
-                'valorHora' => 'R$ ' . $quadra->valor_aluguel . ',00',
+                'valorHora' => $quadra->valor_aluguel,
                 'id' => $quadra->id,
-                'endereco' => $endereco->rua . ' - ' . $endereco->cidade . ',' . $endereco->estado,
+                'rua' => $endereco->rua,
+                'cidade' => $endereco->cidade,
+                'estado' => $endereco->estado,
+                'cep' => $endereco->cep,
+                'bairro' => $endereco->bairro,
+                'complemento' => $endereco->complemento,
+                'numero' => $endereco->numero,
+                'status' => $quadra->status,
             ];
         }
         return view('todasQuadras', compact('todas'));
@@ -69,7 +76,7 @@ class QuadrasController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**

@@ -92,7 +92,21 @@ class QuadraController extends Controller
      */
     public function show($id)
     {
-        //
+        $quadra = Quadra::find($id);
+        $endereco = Endereco::find($quadra->endereco_id);
+        $todas[] = [
+            'titulo' => $quadra->titulo,
+            'valorHora' => $quadra->valor_aluguel,
+            'id' => $quadra->id,
+            'rua' => $endereco->rua,
+            'cidade' => $endereco->cidade,
+            'estado' => $endereco->estado,
+            'cep' => $endereco->cep,
+            'bairro' => $endereco->bairro,
+            'complemento' => $endereco->complemento,
+            'numero' => $endereco->numero,
+        ];
+        return view("adicionarQuadras", compact("todas"));
     }
 
     /**
@@ -129,9 +143,49 @@ class QuadraController extends Controller
      * @param  \App\Quadra  $quadra
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quadra $quadra)
+    public function update(Request $request, $id)
     {
-        //
+
+        $quadra = Quadra::find($id);
+
+        $quadra->update([
+            'titulo' => $request->titulo,
+            'valor_aluguel' => $request->valorHora,
+        ]);
+
+        $endereco = Endereco::find($quadra->endereco_id);
+
+        $certo = $endereco->update([
+            'cep' => $request->cep,
+            'rua' => $request->rua,
+            'bairro' => $request->bairro,
+            'numero' => $request->numero,
+            'complemento' => $request->complemento,
+            'cidade' => $request->cidade,
+            'estado' => $request->estado
+        ]);
+
+        $todas[] = [
+            'titulo' => $quadra->titulo,
+            'valorHora' => $quadra->valor_aluguel,
+            'id' => $quadra->id,
+            'rua' => $endereco->rua,
+            'cidade' => $endereco->cidade,
+            'estado' => $endereco->estado,
+            'cep' => $endereco->cep,
+            'bairro' => $endereco->bairro,
+            'complemento' => $endereco->complemento,
+            'numero' => $endereco->numero,
+        ];
+
+
+        if ($certo) {
+            $mensagem = 'success';
+        } else {
+            $mensagem = 'error';
+        }
+
+        return view("adicionarQuadras", compact('todas'))->with('mensagem', $mensagem);
     }
 
     /**
@@ -142,6 +196,35 @@ class QuadraController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $quadra = Quadra::find($id);
+        $endereco = Endereco::find($quadra->endereco_id);
+
+        $certo = $endereco->delete();
+        if ($certo) {
+            $certo = $quadra->delete();
+        } else {
+            $certo = 'false';
+        }
+
+        $todas[] = [
+            'titulo' => $quadra->titulo,
+            'valorHora' => $quadra->valor_aluguel,
+            'id' => $quadra->id,
+            'rua' => $endereco->rua,
+            'cidade' => $endereco->cidade,
+            'estado' => $endereco->estado,
+            'cep' => $endereco->cep,
+            'bairro' => $endereco->bairro,
+            'complemento' => $endereco->complemento,
+            'numero' => $endereco->numero,
+        ];
+
+        if ($certo) {
+            $mensagem = 'success';
+        } else {
+            $mensagem = 'error';
+        }
+
+        return view("todasQuadras", compact("todas"))->with('mensagem', $mensagem);
     }
 }
