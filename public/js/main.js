@@ -69,7 +69,7 @@ function initialiseUI() {
     } else {
       console.log('User is NOT subscribed.');
     }
-    
+
     if (!isSubscribed) {
       subscribeUser();
     }
@@ -161,23 +161,23 @@ function unsubscribeUser() {
   });
 }
 
-if ('serviceWorker' in navigator && 'PushManager' in window) {
-  console.log('Service Worker and Push is supported');
-  //mysw.js has the push method and payload, mysw.js also has the eventhandler fr when the notification is clicked
-  navigator.serviceWorker.register('sw.js') //this MUST be in the same directory as index.php
-  .then(function(swReg) {
-    console.log('Service Worker is registered', swReg);
+// if ('serviceWorker' in navigator && 'PushManager' in window) {
+//   console.log('Service Worker and Push is supported');
+//   //mysw.js has the push method and payload, mysw.js also has the eventhandler fr when the notification is clicked
+//   navigator.serviceWorker.register('sw.js') //this MUST be in the same directory as index.php
+//   .then(function(swReg) {
+//     console.log('Service Worker is registered', swReg);
 
-    swRegistration = swReg;
-    initialiseUI();
+//     swRegistration = swReg;
+//     initialiseUI();
 
-  })
-  .catch(function(error) {
-    console.error('Service Worker Error', error);
-  });
-} else {
-  console.warn('Push messaging is not supported');
-   //pushButton.textContent = 'Push Not Supported';
-}
+//   })
+//   .catch(function(error) {
+//     console.error('Service Worker Error', error);
+//   });
+// } else {
+//   console.warn('Push messaging is not supported');
+//    //pushButton.textContent = 'Push Not Supported';
+// }
 
 // window.location.href="https://descomplicasms.com";

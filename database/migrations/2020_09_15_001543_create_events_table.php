@@ -19,6 +19,9 @@ class CreateEventsTable extends Migration
             $table->dateTime('start');
             $table->dateTime('end');
             $table->longText('description')->nullable();
+            $table->integer('quadra_id')->nullable();
+            $table->integer('usuario_id')->nullable();
+            $table->integer('pagamento_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

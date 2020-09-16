@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 Route::get('/fullcalendar', 'FullCalendarController@index')->name('calendar');
 Route::get('/load-events', 'EventController@loadEvents')->name('routeLoadEvents');
