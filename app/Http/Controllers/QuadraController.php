@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Quadra;
 use App\Endereco;
+use App\FotoQuadra;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\App;
@@ -74,6 +75,8 @@ class QuadraController extends Controller
             'owner_id' => $user->id,
             'status' => 1
         ]);
+
+        $fotoQuadra = FotoQuadra::whereIn('id', $request->ftid)->update(['quadra_id' => $certo->id]);
 
         if ($certo) {
             $mensagem = 'success';

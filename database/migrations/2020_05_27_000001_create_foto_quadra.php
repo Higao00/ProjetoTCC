@@ -13,7 +13,7 @@ class CreateFotoQuadra extends Migration
      */
     public function up()
     {
-        Schema::create('foto_quadra', function (Blueprint $table) {
+        Schema::create('foto_quadras', function (Blueprint $table) {
             $table->id();
             $table->integer('quadra_id');
             $table->string('path_foto');
@@ -29,6 +29,6 @@ class CreateFotoQuadra extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('foto_quadra');
+        Schema::dropIfExists('foto_quadras');
     }
 }

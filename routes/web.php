@@ -31,6 +31,9 @@ Route::get('/load-events', 'EventController@loadEvents')->name('routeLoadEvents'
 Route::put('/event-update', 'EventController@update')->name('routeEventUpdate');
 Route::post('/event-store', 'EventController@store')->name('routeEventStore');
 
+Route::get('dropzone', 'DropzoneController@dropzone');
+Route::post('dropzone/store', 'DropzoneController@dropzoneStore')->name('dropzone.store');
+
 Route::resource('/home', 'HomeController');
 Route::resource('/perfil', 'UserController');
 Route::resource('/favoritas', 'FavoritasController');
