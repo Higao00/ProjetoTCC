@@ -15,5 +15,9 @@ class DatabaseSeeder extends Seeder
             EventTableSeeder::class,
         ]);
         // factory(App\User::class, 50)->create();
+        // factory(App\Quadra::class, 50)->create();
+        factory(App\Endereco::class, 50)->create();
+
+
     }
 }

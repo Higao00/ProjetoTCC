@@ -280,7 +280,7 @@
 
                             @if (auth()->user()->permissao == 2 || auth()->user()->permissao == 3)
                                 <li class="nav-item suspenso">
-                                    <a href="{{ route('quadras.index') }}" class="nav-link waves-effect bold-1"><i
+                                    <a href="{{ route('cadastro-quadra') }}" class="nav-link waves-effect bold-1"><i
                                             class="fas fa-plus mr-3"></i>Cadastrar Quadra
                                     </a>
                                 </li>
@@ -354,7 +354,7 @@
                     </a>
 
                     @if (auth()->user()->permissao == 2 || auth()->user()->permissao == 3)
-                        <a href="{{ route('quadras.index') }}"
+                        <a href="{{ route('cadastro-quadra') }}"
                             class="list-group-item list-group-item-action waves-effect"><i
                                 class="fas fa-plus mr-3 "></i>Cadastrar Quadra
                         </a>
@@ -658,8 +658,6 @@
 
     </script>
 
-
-
     {{-- Api cep --}}
     <script>
         jQuery("#campoCep").mask("99999-999");
@@ -695,6 +693,7 @@
         });
 
     </script>
+
 </body>
 
 </html>

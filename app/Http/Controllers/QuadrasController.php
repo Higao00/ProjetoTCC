@@ -16,7 +16,9 @@ class QuadrasController extends Controller
      */
     public function index()
     {
-        return view('adicionarQuadras');
+        $quadras = Quadra::all();
+
+        return $quadras;
     }
 
     /**
@@ -76,7 +78,6 @@ class QuadrasController extends Controller
      */
     public function edit($id)
     {
-
     }
 
     /**
