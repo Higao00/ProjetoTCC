@@ -13,7 +13,10 @@
     <!-- Your custom styles (optional) -->
     <link href="{{ url('css/style.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('css/sweetalert2.min.css') }}">
-    <link href="{{ url('css/dropzone.min.css') }}" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.css"
+        integrity="sha512-CmjeEOiBCtxpzzfuT2remy8NP++fmHRxR3LnsdQhVXzA3QqRMaJ3heF9zOB+c1lCWSwZkzSOWfTn1CdqgkW3EQ=="
+        crossorigin="anonymous" />
 
     <style>
         .suspenso {
@@ -641,9 +644,13 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="{{ url('js/mdb.min.js') }}"></script>
     <script src="{{ url('js/sweetalert2.min.js') }} "></script>
-    <script src="{{ url('js/dropzone.min.js') }}"></script>
+    {{-- <script src="{{ url('js/dropzone.min.js') }}"></script>
+    --}}
     <script src="{{ url('js/main.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+
 
     <script>
         var options = {
@@ -658,11 +665,32 @@
 
     </script>
 
-
-
     {{-- Api cep --}}
     <script>
         jQuery("#campoCep").mask("99999-999");
+
+        Dropzone.autoDiscover = false;
+
+        Dropzone.options.image = {
+            maxFilesize: 1,
+            acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            // paramName: "foto-quadra", // The name that will be used to transfer the file
+            maxFilesize: 8, // MB
+            maxFiles: 5,
+            acceptedFiles: "image/*",
+            resizeWidth: 1024,
+            resizeHeight: 720,
+
+            success: function(file, response) {
+                console.log(file);
+                console.log(response);
+                $('form div.form-quadra').append('<input name="ftid[]" value="' +
+                    response.success + '">');
+            }
+
+        }
+
+        $('#image').dropzone();
 
         $(document).ready(function() {
             $("#campoCep").blur(function() {
@@ -692,6 +720,22 @@
                     }
                 });
             });
+
+
+
+            // Dropzone.options.imageUpload = {
+            //     maxFilesize: 1,
+            //     acceptedFiles: ".jpeg,.jpg,.png,.gif",
+            //     paramName: "foto-quadra", // The name that will be used to transfer the file
+            //     maxFilesize: 8, // MB
+            //     maxFiles: 5,
+            //     acceptedFiles: "image/*",
+            //     resizeWidth: 1024,
+            //     resizeHeight: 720,
+            //     success: function(file, response) {
+
+            //     }
+            // };
         });
 
     </script>
