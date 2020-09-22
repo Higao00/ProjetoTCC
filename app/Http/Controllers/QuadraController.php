@@ -71,7 +71,7 @@ class QuadraController extends Controller
         $certo = Quadra::create([
             'titulo' => $request->titulo,
             'endereco_id' => $endereco->id,
-            'valor_aluguel' => $request->valorHora,
+            'valor_aluguel' => str_replace('R$ ', '', $request->valorHora),
             'owner_id' => $user->id,
             'status' => 1
         ]);
@@ -153,7 +153,7 @@ class QuadraController extends Controller
 
         $quadra->update([
             'titulo' => $request->titulo,
-            'valor_aluguel' => $request->valorHora,
+            'valor_aluguel' => str_replace('R$ ', '', $request->valorHora),
         ]);
 
         $endereco = Endereco::find($quadra->endereco_id);

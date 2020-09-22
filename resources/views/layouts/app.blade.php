@@ -19,6 +19,10 @@
         crossorigin="anonymous" />
 
     <style>
+        body {
+            font-family: 'system-ui' !important;
+        }
+
         .suspenso {
             display: none !important;
         }
@@ -648,8 +652,8 @@
     --}}
     <script src="{{ url('js/main.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.10/jquery.mask.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
 
 
     <script>
@@ -740,6 +744,17 @@
 
     </script>
 
+    {{-- Macara dinheiro --}}
+    <script>
+        $(document).ready(function() {
+            $("#valorAluguel").maskMoney({
+                prefix: "R$ ",
+                decimal: ".",
+                thousands: "."
+            });
+        });
+
+    </script>
 </body>
 
 </html>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Quadra;
 use App\Endereco;
+use App\FotoQuadra;
 use App\User;
 
 class QuadrasController extends Controller
@@ -16,7 +17,25 @@ class QuadrasController extends Controller
      */
     public function index()
     {
-        $quadras = Quadra::all();
+        $data = Quadra::all();
+
+        for ($i = 0; $i < count($data); $i++) {
+            $endereco = Endereco::find($data[$i]->endereco_id);
+            $user = User::find($data[$i]->owner_id);
+            $fotos = FotoQuadra::where('quadra_id', $data[$i]->id)->get();
+
+            $quadras[] = [
+                'id' => $data[$i]->id,
+                'titulo' => mb_strtoupper($data[$i]->titulo),
+                'estado' => mb_strtoupper($endereco->estado),
+                'cidade' => mb_strtoupper($endereco->cidade),
+                'rua' => mb_strtoupper($endereco->rua),
+                'valor_aluguel' => $data[$i]->valor_aluguel,
+                'owner_id' => $user->name,
+                'status' => $data[$i]->status,
+                'fotos' => $fotos->all()
+            ];
+        }
 
         return $quadras;
     }
