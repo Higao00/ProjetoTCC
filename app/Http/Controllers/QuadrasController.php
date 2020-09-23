@@ -19,6 +19,8 @@ class QuadrasController extends Controller
     {
         $data = Quadra::all();
 
+        $quadras = [];
+
         for ($i = 0; $i < count($data); $i++) {
             $endereco = Endereco::find($data[$i]->endereco_id);
             $user = User::find($data[$i]->owner_id);
@@ -120,5 +122,44 @@ class QuadrasController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function viewOne($id)
+    {
+
+        $quadras = Quadra::where('id', $id)->get();
+
+        foreach ($quadras->all() as $quadra) {
+
+            $user = User::find($quadra->owner_id);
+            $fotos = FotoQuadra::where('quadra_id', $quadra->id)->get();
+
+            $todas = [];
+
+            $endereco = Endereco::find($quadra->endereco_id);
+            $todas[] = [
+                'cep' => $endereco->cep,
+                'bairro' => $endereco->bairro,
+                'complemento' => $endereco->complemento,
+                'numero' => $endereco->numero,
+                'id' => $quadra->id,
+                'titulo' => mb_strtoupper($quadra->titulo),
+                'estado' => mb_strtoupper($endereco->estado),
+                'cidade' => mb_strtoupper($endereco->cidade),
+                'rua' => mb_strtoupper($endereco->rua),
+                'valor_aluguel' => $quadra->valor_aluguel,
+                'owner_id' => $user->name,
+                'status' => $quadra->status,
+                'fotos' => $fotos->all()
+            ];
+        }
+
+        return view('viewOne', compact('todas'));
     }
 }

@@ -14,39 +14,13 @@
 <body>
 	<div id='wrap'>
 
-		<div id='external-events' style="display: none;">
-			<h4>Draggable Events</h4>
-
-			<div id='external-events-list'>
-				<div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-					<div class='fc-event-main'>My Event 1</div>
-				</div>
-				<div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-					<div class='fc-event-main'>My Event 2</div>
-				</div>
-				<div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-					<div class='fc-event-main'>My Event 3</div>
-				</div>
-				<div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-					<div class='fc-event-main'>My Event 4</div>
-				</div>
-				<div class='fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event'>
-					<div class='fc-event-main'>My Event 5</div>
-				</div>
-			</div>
-
-			<p>
-				<input type='checkbox' id='drop-remove' />
-				<label for='drop-remove'>remove after drop</label>
-			</p>
-		</div>
-
 		<div id=''>
-
 			<div id='calendar' data-route-event-store="{{ route('routeEventStore')}}" data-route-load-events="{{ route('routeLoadEvents')}}" data-route-event-update="{{ route('routeEventUpdate')}}"></div>
-		</div>
+        </div>
+    </div>
 
-	</div>
+    <button class="btn btn-success" id="new-event" style="margin-left: 0;">Reservar horario</button>
+
 	<div id='source-calendar'></div>
 
 	<!-- Modal -->

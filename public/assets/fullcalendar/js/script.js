@@ -63,4 +63,13 @@ $('.date-time').mask('00/00/0000 00:00:00');
 function resetForm(form) {
 	$(form)[0].reset();
 }
+$('#new-event').click(function (event) {
+    resetForm("#formEvent");
+
+    $('#modalCalendar').modal('show');
+    $('#modalCalendar #titleModal').text('Adicionar Evento');
+    $('#modalCalendar button.deleteEvent').css('display', 'none');
+
+});
+
 

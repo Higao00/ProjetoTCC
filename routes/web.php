@@ -26,6 +26,8 @@ Route::get('/cadastro-quadra', function () {
     return view('adicionarQuadras');
 })->name('cadastro-quadra');
 
+Route::get('/quadra/{quadra}', 'QuadrasController@viewOne')->name('quadra');
+
 Route::get('/fullcalendar', 'FullCalendarController@index')->name('calendar');
 Route::get('/load-events', 'EventController@loadEvents')->name('routeLoadEvents');
 Route::put('/event-update', 'EventController@update')->name('routeEventUpdate');
