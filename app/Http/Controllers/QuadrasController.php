@@ -17,8 +17,7 @@ class QuadrasController extends Controller
      */
     public function index()
     {
-        $data = Quadra::all();
-
+        $data = Quadra::all()->sortBy("valor_aluguel");
         for ($i = 0; $i < count($data); $i++) {
             $endereco = Endereco::find($data[$i]->endereco_id);
             $user = User::find($data[$i]->owner_id);

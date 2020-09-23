@@ -260,13 +260,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="lista_receita.php?tipo=top_receita" class="nav-link waves-effect bold-1">
+                            <a href="" class="nav-link waves-effect bold-1">
                                 <i class="fas fa-star mr-3 suspenso"></i>As Mais Avaliadas
                             </a>
                         </li>
 
                         <li class="nav-item ">
-                            <a href="lista_receita.php?tipo=self" class="nav-link waves-effect bold-1">
+                        <a href="" class="nav-link waves-effect bold-1">
                                 <i class="fas fa-book-open mr-3 suspenso"></i>Melhor Custo Beneficio
                             </a>
                         </li>
