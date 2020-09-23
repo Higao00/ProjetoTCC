@@ -1,0 +1,163 @@
+@extends('layouts.app')
+
+@section('content')
+    <style>
+        @media only screen and (max-width: 500px) {
+            .avaliacao {
+                text-align: left !important;
+                display: block !important;
+                float: unset !important;
+            }
+
+            .endereco {
+                text-align: left !important;
+                font-size: 10px;
+                color: #7f7878;
+                font-weight: 500 !important;
+                display: block;
+            }
+
+            .titulo {
+                font-size: 18px !important;
+            }
+
+            .preco {
+                font-size: 20px !important;
+
+            }
+        }
+
+        .card {
+            margin-bottom: 10px;
+        }
+
+        .card-img-top {
+            max-height: 350px;
+        }
+
+        .card-body {
+            padding-bottom: 5 !important;
+        }
+
+        .titulo_preco {
+            width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .endereco_avaliacao {
+            width: 100%;
+            height: auto;
+        }
+
+        .titulo {
+            text-align: left;
+            color: #000;
+            font-size: 20px;
+            font-weight: bold !important;
+            display: inline-block;
+        }
+
+        .preco {
+            color: #dc3545 !important;
+            font-weight: 600 !important;
+            text-align: right;
+            font-size: 22px;
+            display: inline-block;
+            float: right;
+        }
+
+        .endereco {
+            text-align: left;
+            font-size: 13px;
+            color: #7f7878;
+            font-weight: 500 !important;
+            display: inline-block;
+        }
+
+        .avaliacao {
+            text-align: right;
+            display: inline-block;
+            float: right;
+        }
+
+        .card-img-top {
+            cursor: pointer;
+        }
+
+        .icon_avaliacao {
+            color: #ffc107 !important;
+        }
+
+    </style>
+
+    @php
+    $quadra = $todas[0];
+
+    // dd($quadra);
+    @endphp
+    <div class="container">
+
+        <div class="card">
+
+            <div class="card-body">
+                <!-- BEGIN nav-tabs -->
+                <ul class="nav nav-tabs" id="nav-tabs">
+                    <li class="nav-item"><a href="#agenda" class="nav-link active" data-toggle="tab" data-step="3"
+                            data-intro="Aqui basta copiar(CTRL+C) e Colar(CTRL+V) Para enviar os SMS!">Reservar</a>
+                    </li>
+                    <li class="nav-item"><a href="#detalhes" class="nav-link " data-toggle="tab" data-step="4"
+                            data-intro="Aqui você envia SMS para os seus contatos!">Detalhes</a></li>
+                </ul>
+                <!-- END nav-tabs -->
+                <!-- BEGIN tab-content -->
+                <div class="tab-content tab-content-bordered" style="padding-top: 5%;">
+                    <div class="tab-pane fade show active" id="agenda">
+                        @include('fullcalendar.master')
+                    </div>
+                    <div class="tab-pane fade " id="detalhes">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+
+                                @foreach ($quadra['fotos'] as $key => $item)
+                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                        <img class="d-block w-100" src="{{ url('images/' . $item['path_foto']) }}" />
+                                    </div>
+                                @endforeach
+
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Anterior</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Próximo</span>
+                            </a>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="titulo_preco">
+                                <h4 class="titulo">{{ $quadra['titulo'] }}</h4>
+                                <h5 class="preco">R$ {{ $quadra['valor_aluguel'] }},00</h5>
+                            </div>
+
+                            <div class="endereco_avaliacao">
+                                <p class="endereco">{{ $quadra['rua'] }} - {{ $quadra['cidade'] }}
+                                    {{ $quadra['estado'] }}</p>
+                                <div class="avaliacao">
+                                    <i class="far fa-star icon_avaliacao"></i>
+                                    <i class="far fa-star icon_avaliacao"></i>
+                                    <i class="far fa-star icon_avaliacao"></i>
+                                    <i class="far fa-star icon_avaliacao"></i>
+                                    <i class="far fa-star icon_avaliacao"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endsection

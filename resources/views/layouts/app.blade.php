@@ -251,7 +251,7 @@
                 </button>
 
                 <!-- Links -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" style="padding-left: 3%; " id="navbarSupportedContent">
                     <!-- Left -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">

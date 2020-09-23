@@ -23,7 +23,7 @@
 
             .preco {
                 font-size: 20px !important;
-                
+
             }
         }
 
@@ -96,7 +96,7 @@
             @foreach (app(App\Http\Controllers\QuadrasController::class)->index() as $quadra)
                 <div class="col-lg-6">
                     <div class="card">
-                        <a href="">
+                        <a href="{{ route('quadra', ['quadra'=>$quadra['id']]) }}">
                             <div class="view overlay">
                                 <img class="card-img-top" src="{{ url('images/' . $quadra['fotos'][0]['path_foto']) }}"
                                     alt="imagens quadra" />
