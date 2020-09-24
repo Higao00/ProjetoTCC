@@ -44,6 +44,7 @@ Route::resource('/suspenderQuadra', 'QuadraController');
 Route::resource('/endereco', 'EnderecoController');
 Route::resource('/storeQuadra', 'QuadraController');
 Route::resource('/quadras', 'QuadrasController');
+Route::resource('/custoBeneficio', 'BeneficiosController');
 
 Auth::routes();
 

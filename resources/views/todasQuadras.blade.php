@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <style>
+        .modal-dialog.modal-notify .heading{
+            font-weight: 600 !important;
+        }
+    </style>
+
     <div class="card testimonial-card" style="margin-top: 1%;">
         <div class="table-responsive">
             <table class="table">

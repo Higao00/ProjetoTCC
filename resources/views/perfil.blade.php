@@ -2,6 +2,29 @@
 
 @section('content')
 
+    <style>
+        #myModalLabel {
+            color: brown;
+            font-weight: 700;
+        }
+
+        .modal .modal-side {
+            width: 480 !important;
+        }
+
+        .modal-body {
+            color: #000;
+            font-weight: 400;
+        }
+
+        #atencao {
+            color: brown;
+            font-weight: 500;
+            font-size: 20px;
+        }
+
+    </style>
+
     <div class="container">
         <!-- Card -->
         <div class="card testimonial-card">
@@ -74,7 +97,7 @@
                             <div class="md-form">
                                 <i class="fa fa-chalkboard-teacher prefix grey-text"></i>
                                 <label for="termo" class="font-weight-light">&nbsp
-                                    <input type="checkbox" data-toggle="modal" data-target="#informativo" name="termo" @if ($user->permissao == 2) checked @endif/>
+                                    <input type="checkbox" id="modal_informativo" onclick="modal_atencao()" name="termo" @if ($user->permissao == 2 || $user->permissao == 3) checked @endif/>
                                     Tornar-se um Colaborador
                                 </label>
                             </div>
@@ -93,11 +116,10 @@
         </div>
     </div>
 
-    
+
     {{-- MODAL DO INFORMATIVO --}}
     <!-- To change the direction of the modal animation change .right class -->
-    <div class="modal fade right" id="informativo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
+    <div class="modal fade right" id="informativo" aria-hidden="true">
 
         <!-- Add class .modal-side and then add class .modal-top-right (or other classes from list above) to set a position to the modal -->
         <div class="modal-dialog modal-side modal-top-right" role="document">
@@ -109,7 +131,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Atenção, marcando esse campo você se tornando um colaborador, estará de acordo com todas as
+                    <span id="atencao"> Atenção</span>, marcando esse campo você se tornando um colaborador, estará de
+                    acordo com todas as
                     responsabilidades de um colaborador.
                 </div>
             </div>

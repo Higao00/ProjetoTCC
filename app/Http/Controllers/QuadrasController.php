@@ -17,7 +17,7 @@ class QuadrasController extends Controller
      */
     public function index()
     {
-        $data = Quadra::all();
+        $data = Quadra::where('status', 1)->get();
 
         $quadras = [];
 

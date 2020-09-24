@@ -261,13 +261,13 @@
                         </li>
                         <li class="nav-item">
                             <a href="" class="nav-link waves-effect bold-1">
-                                <i class="fas fa-star mr-3 suspenso"></i>As Mais Avaliadas
+                                <i class="fas fa-star mr-3 suspenso"></i>MAIS AVALIADAS
                             </a>
                         </li>
 
                         <li class="nav-item ">
-                        <a href="" class="nav-link waves-effect bold-1">
-                                <i class="fas fa-book-open mr-3 suspenso"></i>Melhor Custo Beneficio
+                            <a href="{{ route('custoBeneficio.index') }}" class="nav-link waves-effect bold-1">
+                                <i class="fas fa-book-open mr-3 suspenso"></i>MELHOR CUSTO BENEFICIO
                             </a>
                         </li>
 
@@ -753,6 +753,18 @@
                 thousands: "."
             });
         });
+
+    </script>
+
+    {{-- Modal informativo --}}
+    <script>
+        function modal_atencao() {
+            $('#modal_informativo').on('change', function(e) {
+                if (e.target.checked) {
+                    $('#informativo').modal();
+                }
+            });
+        }
 
     </script>
 </body>

@@ -94,7 +94,7 @@
 
     <div class="container">
         <div class="row">
-            @foreach (app(App\Http\Controllers\QuadrasController::class)->index() as $quadra)
+            @foreach ($quadras as $quadra)
                 <div class="col-lg-6">
                     <div class="card">
                         <a href="{{ route('quadra', ['quadra'=>$quadra['id']]) }}">
