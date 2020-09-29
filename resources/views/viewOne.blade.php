@@ -87,6 +87,18 @@
 
         .icon_avaliacao {
             color: #ffc107 !important;
+            cursor: pointer;
+        }
+
+        .favoritas {
+            list-style: none;
+            color: #dc3545;
+            border: 0px;
+            background-color: #fff;
+        }
+
+        .favoritas:hover {
+            color: #4285f4;
         }
 
     </style>
@@ -99,7 +111,6 @@
     <div class="container">
 
         <div class="card">
-
             <div class="card-body">
                 <!-- BEGIN nav-tabs -->
                 <ul class="nav nav-tabs" id="nav-tabs">
@@ -148,11 +159,21 @@
                                 <p class="endereco">{{ $quadra['rua'] }} - {{ $quadra['cidade'] }}
                                     {{ $quadra['estado'] }}</p>
                                 <div class="avaliacao">
-                                    <i class="far fa-star icon_avaliacao"></i>
-                                    <i class="far fa-star icon_avaliacao"></i>
-                                    <i class="far fa-star icon_avaliacao"></i>
-                                    <i class="far fa-star icon_avaliacao"></i>
-                                    <i class="far fa-star icon_avaliacao"></i>
+                                    @if (auth()->user())
+                                        <form style="float: left; padding-right: 10px;"
+                                            action="{{ route('favoritas.store') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="id_quadra" value="{{ $quadra['id'] }}">
+                                            <button type="submit" class="favoritas"><i
+                                                    class="far fa-heart fa-2x"></i></button>
+                                        </form>
+
+                                        <i class="far fa-star icon_avaliacao"></i>
+                                        <i class="far fa-star icon_avaliacao"></i>
+                                        <i class="far fa-star icon_avaliacao"></i>
+                                        <i class="far fa-star icon_avaliacao"></i>
+                                        <i class="far fa-star icon_avaliacao"></i>
+                                    @endif
                                 </div>
                             </div>
                         </div>
