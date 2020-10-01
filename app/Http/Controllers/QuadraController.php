@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Quadra;
 use App\Endereco;
 use App\FotoQuadra;
+use App\Horario;
 use App\User;
 use Auth;
 use Illuminate\Support\Facades\App;
@@ -68,12 +69,20 @@ class QuadraController extends Controller
             'estado' => $request->estado
         ]);
 
-        $certo = Quadra::create([
+        $quadra = Quadra::create([
             'titulo' => $request->titulo,
             'endereco_id' => $endereco->id,
             'valor_aluguel' => str_replace('R$ ', '', $request->valorHora),
             'owner_id' => $user->id,
             'status' => 1
+        ]);
+
+        $certo = Horario::create([
+            'id_quadra' => $quadra->id,
+            'hora_inicio' => $request->horaInicio,
+            'hora_fim' => $request->horaFim,
+            'data_inicio' => $request->dataInicio,
+            'data_fim' => $request->dataFim
         ]);
 
         $fotoQuadra = FotoQuadra::whereIn('id', $request->ftid)->update(['quadra_id' => $certo->id]);
@@ -97,6 +106,8 @@ class QuadraController extends Controller
     {
         $quadra = Quadra::find($id);
         $endereco = Endereco::find($quadra->endereco_id);
+        $aux = Horario::where('id_quadra', $quadra->endereco_id)->get();
+        $hora_data = Horario::find($aux->all()[0]->id);
         $todas[] = [
             'titulo' => $quadra->titulo,
             'valorHora' => $quadra->valor_aluguel,
@@ -108,8 +119,17 @@ class QuadraController extends Controller
             'bairro' => $endereco->bairro,
             'complemento' => $endereco->complemento,
             'numero' => $endereco->numero,
+            'hora_inicio' => $hora_data->hora_inicio,
+            'hora_fim' => $hora_data->hora_fim,
+            'data_inicio' => $hora_data->data_inicio,
+            'data_fim' => $hora_data->data_fim
         ];
-        return view("adicionarQuadras", compact("todas"));
+
+        if (!empty($todas)) {
+            return view("adicionarQuadras", compact("todas"));
+        } else {
+            return view("home");
+        }
     }
 
     /**
@@ -157,8 +177,7 @@ class QuadraController extends Controller
         ]);
 
         $endereco = Endereco::find($quadra->endereco_id);
-
-        $certo = $endereco->update([
+        $endereco->update([
             'cep' => $request->cep,
             'rua' => $request->rua,
             'bairro' => $request->bairro,
@@ -166,6 +185,16 @@ class QuadraController extends Controller
             'complemento' => $request->complemento,
             'cidade' => $request->cidade,
             'estado' => $request->estado
+        ]);
+
+        $aux = Horario::where('id_quadra', $id)->get();
+
+        $hora_data = Horario::find($aux->all()[0]->id);
+        $certo = $hora_data->update([
+            'hora_inicio' => $request->horaInicio,
+            'hora_fim' => $request->horaFim,
+            'data_inicio' => $request->dataInicio,
+            'data_fim' => $request->dataFim
         ]);
 
         $todas[] = [
@@ -179,6 +208,10 @@ class QuadraController extends Controller
             'bairro' => $endereco->bairro,
             'complemento' => $endereco->complemento,
             'numero' => $endereco->numero,
+            'hora_inicio' => $hora_data->hora_inicio,
+            'hora_fim' => $hora_data->hora_fim,
+            'data_inicio' => $hora_data->data_inicio,
+            'data_fim' => $hora_data->data_fim
         ];
 
 

@@ -37,7 +37,11 @@ class BeneficiosController extends Controller
             ];
         }
 
-        return view('melhorBeneficio', compact('quadras'));
+        if (!empty($quadras)) {
+            return view('melhorBeneficio', compact('quadras'));
+        } else {
+            return view('melhorBeneficio');
+        }
     }
 
     /**

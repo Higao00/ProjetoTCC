@@ -17,7 +17,7 @@
                 display: block;
             }
 
-            .titulo{
+            .titulo {
                 font-size: 18px !important;
             }
 
@@ -94,36 +94,42 @@
 
     <div class="container">
         <div class="row">
-            @foreach ($quadras as $quadra)
-                <div class="col-lg-6">
-                    <div class="card">
-                        <a href="{{ route('quadra', ['quadra'=>$quadra['id']]) }}">
-                            <div class="view overlay">
-                                <img class="card-img-top" src="{{ url('images/' . $quadra['fotos'][0]['path_foto']) }}"
-                                    alt="imagens quadra" />
-                            </div>
-                            <div class="card-body">
-                                <div class="titulo_preco">
-                                    <h4 class="titulo">{{ $quadra['titulo'] }}</h4>
-                                    <h5 class="preco">R$ {{ $quadra['valor_aluguel'] }},00</h5>
-                                </div>
 
-                                <div class="endereco_avaliacao">
-                                    <p class="endereco">{{ $quadra['rua'] }} - {{ $quadra['cidade'] }}
-                                        {{ $quadra['estado'] }}</p>
-                                    <div class="avaliacao">
-                                        <i class="far fa-star icon_avaliacao"></i>
-                                        <i class="far fa-star icon_avaliacao"></i>
-                                        <i class="far fa-star icon_avaliacao"></i>
-                                        <i class="far fa-star icon_avaliacao"></i>
-                                        <i class="far fa-star icon_avaliacao"></i>
+            @if (!empty($quadras))
+                @foreach ($quadras as $quadra)
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <a href="{{ route('quadra', ['quadra' => $quadra['id']]) }}">
+                                <div class="view overlay">
+                                    <img class="card-img-top" src="{{ url('images/' . $quadra['fotos'][0]['path_foto']) }}"
+                                        alt="imagens quadra" />
+                                </div>
+                                <div class="card-body">
+                                    <div class="titulo_preco">
+                                        <h4 class="titulo">{{ $quadra['titulo'] }}</h4>
+                                        <h5 class="preco">R$ {{ $quadra['valor_aluguel'] }},00</h5>
+                                    </div>
+
+                                    <div class="endereco_avaliacao">
+                                        <p class="endereco">{{ $quadra['rua'] }} - {{ $quadra['cidade'] }}
+                                            {{ $quadra['estado'] }}</p>
+                                        <div class="avaliacao">
+                                            <i class="far fa-star icon_avaliacao"></i>
+                                            <i class="far fa-star icon_avaliacao"></i>
+                                            <i class="far fa-star icon_avaliacao"></i>
+                                            <i class="far fa-star icon_avaliacao"></i>
+                                            <i class="far fa-star icon_avaliacao"></i>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            @endforeach
+                @endforeach
+
+               @else
+                    
+            @endif
         </div>
     </div>
 @endsection

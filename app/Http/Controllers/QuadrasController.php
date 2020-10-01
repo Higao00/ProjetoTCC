@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Quadra;
 use App\Endereco;
 use App\FotoQuadra;
+use App\Horario;
 use App\User;
 
 class QuadrasController extends Controller
@@ -88,7 +89,12 @@ class QuadrasController extends Controller
                 'status' => $quadra->status,
             ];
         }
-        return view('todasQuadras', compact('todas'));
+
+        if (!empty($todas)) {
+            return view("todasQuadras", compact("todas"));
+        } else {
+            return view("home");
+        }
     }
 
     /**

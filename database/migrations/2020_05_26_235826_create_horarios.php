@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHorario extends Migration
+class CreateHorarios extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateHorario extends Migration
      */
     public function up()
     {
-        Schema::create('horario', function (Blueprint $table) {
+        Schema::create('horarios', function (Blueprint $table) {
             $table->id();
-            $table->integer('hora');
-            $table->integer('minuto');
+            $table->integer('id_quadra');
+            $table->string('hora_inicio');
+            $table->string('hora_fim');
+            $table->string('data_inicio');
+            $table->string('data_fim');
             $table->timestamps();
         });
     }
