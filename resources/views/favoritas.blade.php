@@ -94,7 +94,6 @@
 
     <div class="container">
         <div class="row">
-
             @if (!empty($quadras))
                 @foreach ($quadras as $quadra)
                     <div class="col-lg-6">
@@ -126,9 +125,8 @@
                         </div>
                     </div>
                 @endforeach
+            @else
 
-               @else
-                    
             @endif
         </div>
     </div>
