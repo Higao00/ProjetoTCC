@@ -37,6 +37,19 @@ $(document).ready(function () {
 		sendEvent(route, Event);
 
 	});
+
+	$('.deleteEvent').click(function(){
+		let id = $("#modalCalendar input[name='id']").val();
+
+		let Event = {
+			id:id,
+			_method: 'DELETE'
+		};
+
+		let route = routeEvents('routeEventDelete');
+
+		sendEvent(route, Event);
+	});
 });
 
 function sendEvent(route, data_) {
@@ -71,5 +84,7 @@ $('#new-event').click(function (event) {
     $('#modalCalendar button.deleteEvent').css('display', 'none');
 
 });
+
+
 
 

@@ -17,7 +17,8 @@
         <div id=''>
             <div id='calendar' data-route-event-store="{{ route('routeEventStore') }}"
                 data-route-load-events="{{ route('routeLoadEvents') }}"
-                data-route-event-update="{{ route('routeEventUpdate') }}"></div>
+                data-route-event-update="{{ route('routeEventUpdate') }}"
+                data-route-event-delete="{{ route('routeEventDelete') }}"></div>
         </div>
     </div>
 
@@ -52,31 +53,31 @@
                         </div>
                         <div class="form-group">
                             <label for="start">Data/Hora Inicial</label>
-                            <select type="text" class="form-control" name="start" id="start">
+                            {{-- <select type="text" class="form-control" name="start" id="start">
                                 @for ($x = 0; $x < 10; $x++)
                                     <option>
                                         @php
-                                            date
+                                            echo date('Y-m-d');
                                         @endphp
                                     </option>
                                 @endfor
-                            </select>
+                            </select> --}}
 
-                            {{--
+
                             <input type="text" class="form-control date-time" name="start" id="start"
                                 placeholder="Inicio" @if (!Auth::check())
                             readonly
                             @endif
-                            > --}}
+                            >
                         </div>
-                        {{-- <div class="form-group">
+                        <div class="form-group">
                             <label for="end">Data/Hora Final</label>
                             <input type="text" class="form-control date-time" name="end" id="end" placeholder="Fim"
                                 @if (!Auth::check())
                             readonly
                             @endif
                             >
-                        </div> --}}
+                        </div>
                         <div class="form-group">
                             <label for="description">Descrição</label>
                             <textarea class="form-control" value="Agendamento de quadra!" name="description"
@@ -106,6 +107,13 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.28.0/locale/br.min.js"></script>
+
+    <script>
+
+        $(document).ready(function(){
+
+        });
+    </script>
 
 </body>
 
