@@ -44,6 +44,10 @@
 
     ?>
 
+    <script>
+        const HORA_INICIO = {{$hora->hora_inicio}};
+        const HORA_FIM = {{$hora->hora_fim}};
+    </script>
 
     <div class="modal fade" id="modalCalendarView" tabindex="-1" role="dialog" aria-labelledby="titleModal"
         aria-hidden="true">
@@ -194,6 +198,9 @@
                             ?>
 
                             <select type="text" class="form-control" name="start_date" id="start_date">
+
+                                <option value="-1">Selecione</option>
+
                                 @for ($x = $semana1[$hora->data_inicio]; $x <= $semana1[$hora->data_fim]; $x++)
 
                                     <?php
@@ -223,12 +230,15 @@
                             > --}}
 
                             <select type="text" class="form-control" name="start_hora" id="start_hora">
+
+                                <option value="-1">Selecione</option>
+
                                 @for ($x = $hora->hora_inicio; $x < $hora->hora_fim; $x++)
 
                                     <?php
                                         $aux = $x.':00 - '.($x+1).':00';
                                     ?>
-                                    <option value="<?php echo $aux ?>">
+                                    <option value="<?php echo $aux ?>" style="display: none;">
                                         @php
                                             echo $aux;
                                         @endphp

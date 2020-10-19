@@ -97,5 +97,3 @@ $('#new-event').click(function (event) {
 });
 
 
-
-

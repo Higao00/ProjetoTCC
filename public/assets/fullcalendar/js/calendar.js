@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-
-
     /* initialize the calendar
     -----------------------------------------------------------------*/
 
@@ -101,7 +99,56 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(event);
         }
     });
+
     calendar.render();
 
+
+    function hideHorario(){
+        $('#start_hora').find('> option').each(function(){
+            $(this).css('display', 'none');
+        });
+    }
+
+    function showHorario(){
+        $('#start_hora').find('> option').each(function(){
+            $(this).css('display', 'block');
+        });
+    }
+
+    $('#start_date').change(function(){
+
+        if($(this).find('> option:selected').val() == -1){
+
+            hideHorario();
+
+        }else{
+            let valor = moment($(this).find('> option:selected').val(), "DD/MM/YYYY").format('DD/MM/YYYY');
+
+            let aux_events = calendar.getEvents();
+
+            // console.log(aux_events);
+
+            showHorario();
+
+            aux_events.forEach(function(item, index){
+
+                if(moment(item.start).format('DD/MM/YYYY') == valor){
+                    $('#start_hora > option').each(function(){
+
+                        if($(this).val() == moment(item.start).format('HH:mm') + ' - ' + moment(item.end).format('HH:mm')){
+                            $(this).css('display', 'none');
+                        }
+
+                    });
+                }
+
+                // console.log(moment(item.start).format('DD/MM/YYYY'));
+            });
+
+            // console.log(moment(calendar.getEvents()[2].start).format('DD/MM/YYYY'), valor);
+
+            // console.log(moment(calendar.getEvents()[2].start).format('HH:mm:ss'), moment(calendar.getEvents()[2].end).format('HH:mm:ss'))
+        }
+    });
 });
 
