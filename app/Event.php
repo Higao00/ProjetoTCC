@@ -10,7 +10,7 @@ class Event extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'start', 'end', 'description'];
+    protected $fillable = ['title', 'start', 'end', 'description', 'quadra_id', 'usuario_id'];
 
     public function getStartAttribute($value){
         $dateStart = Carbon::createFromFormat('Y-m-d H:i:s', $value)->format('Y-m-d');

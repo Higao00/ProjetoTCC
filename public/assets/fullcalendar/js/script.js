@@ -11,17 +11,28 @@ $(document).ready(function () {
 	});
 
 	$('.saveEvent').click(function () {
-		let id = $('#modalCalendar input[name="id"]').val();
-		let title = $('#modalCalendar input[name="title"]').val();
-		let start = moment($('#modalCalendar input[name="start"]').val(), "DD/MM/YYYY HH:mm:ss").format('YYYY/MM/DD HH:mm:ss');
-		let end = moment($('#modalCalendar input[name="end"]').val(), "DD/MM/YYYY HH:mm:ss").format('YYYY/MM/DD HH:mm:ss');
-		let description = $('#modalCalendar textarea[name="description"]').val();
+		let id = $('#modalCalendarCadastro input[name="id"]').val();
+		let title = $('#modalCalendarCadastro input[name="title"]').val();
+		let DIA = moment($('#modalCalendarCadastro select[name="start_date"] option:selected').val(), "DD/MM/YYYY").format('YYYY/MM/DD');
+		let HORA = $('#modalCalendarCadastro select[name="start_hora"] option:selected').val();
+        let description = $('#modalCalendarCadastro textarea[name="description"]').val();
+        let quadra_id = $('#calendar').attr('id-quadra');
+        let usuario_id = $('#calendar').attr('id-usuario');
+
+        HORA = HORA.split('-');
+
+        let start = DIA + ' ' + HORA[0];
+        let end = DIA + '' + HORA[1];
+
+        console.log(start, end);
 
 		let Event = {
 			title: title,
 			start: start,
 			end: end,
-			description: description,
+            description: description,
+            quadra_id: quadra_id,
+            usuario_id: usuario_id
 		};
 
 		let route;
@@ -39,7 +50,7 @@ $(document).ready(function () {
 	});
 
 	$('.deleteEvent').click(function(){
-		let id = $("#modalCalendar input[name='id']").val();
+		let id = $("#modalCalendarView input[name='id']").val();
 
 		let Event = {
 			id:id,
@@ -79,9 +90,9 @@ function resetForm(form) {
 $('#new-event').click(function (event) {
     resetForm("#formEvent");
 
-    $('#modalCalendar').modal('show');
-    $('#modalCalendar #titleModal').text('Adicionar Evento');
-    $('#modalCalendar button.deleteEvent').css('display', 'none');
+    $('#modalCalendarCadastro').modal('show');
+    $('#modalCalendarCadastro #titleModal').text('Fazer reserva');
+    $('#modalCalendarCadastro button.deleteEvent').css('display', 'none');
 
 });
 

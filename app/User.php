@@ -19,7 +19,12 @@ class User extends Authenticatable
     {
         return $this->permissao == 3; // Coluna permissaão == 2 usuario é ADMIN
     }
-    
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
     protected $fillable = [
         'name',
         'email',
@@ -29,7 +34,8 @@ class User extends Authenticatable
         'status',
         'permissao',
         'email_verified_at',
-        'password'];
+        'password'
+    ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -39,5 +45,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
 }

@@ -7,8 +7,12 @@ use App\Event;
 
 class EventController extends Controller
 {
-    public function loadEvents(){
-        $events = Event::all();
+    public function loadEvents(Request $request){
+
+        // dd($request->quadra);
+        $events = Event::where('quadra_id', $request->quadra)->get();
+
+        // $events = Event::all();
 
         return response()->json($events);
     }
