@@ -101,12 +101,22 @@
             color: #4285f4;
         }
 
+        .checked {
+            color: orange;
+        }
+
     </style>
 
     @php
     $quadra = $todas[0];
 
-    // dd($quadra);
+    if(Auth::check()){
+        $idUser = auth()->user()->getId();
+    }else{
+        $idUser = -1;
+    }
+
+    // dd($id);
     @endphp
     <div class="container">
 
@@ -114,11 +124,11 @@
             <div class="card-body">
                 <!-- BEGIN nav-tabs -->
                 <ul class="nav nav-tabs" id="nav-tabs">
-                    <li class="nav-item"><a href="#agenda" class="nav-link active" data-toggle="tab" data-step="3"
-                            data-intro="Aqui basta copiar(CTRL+C) e Colar(CTRL+V) Para enviar os SMS!">Reservar</a>
+                    <li class="nav-item"><a href="#agenda" class="nav-link active" data-toggle="tab"
+                            >Reservar</a>
                     </li>
-                    <li class="nav-item"><a href="#detalhes" class="nav-link " data-toggle="tab" data-step="4"
-                            data-intro="Aqui você envia SMS para os seus contatos!">Detalhes</a></li>
+                    <li class="nav-item"><a href="#detalhes" class="nav-link " data-toggle="tab"
+                            >Detalhes</a></li>
                 </ul>
                 <!-- END nav-tabs -->
                 <!-- BEGIN tab-content -->
@@ -155,10 +165,21 @@
                                 <h5 class="preco">R$ {{ $quadra['valor_aluguel'] }},00</h5>
                             </div>
 
-                            <div class="endereco_avaliacao">
-                                <p class="endereco">{{ $quadra['rua'] }} - {{ $quadra['cidade'] }}
-                                    {{ $quadra['estado'] }}</p>
-                                <div class="avaliacao">
+                            <div class="endereco_avaliacao row">
+                                <div class="col-md-6">
+                                    <p class="endereco">{{ $quadra['rua'] }} - {{ $quadra['cidade'] }}
+                                        {{ $quadra['estado'] }}</p>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <span class="fa fa-star checked" value="0"></span>
+                                    <span class="fa fa-star checked" value="0"></span>
+                                    <span class="fa fa-star checked" value="0"></span>
+                                    <span class="fa fa-star" value="0"></span>
+                                    <span class="fa fa-star" value="0"></span>
+                                </div>
+
+                                <div class="avaliacao col-md-2" >
                                     @if (auth()->user())
                                         <form style="float: left; padding-right: 10px;"
                                             action="{{ route('favoritas.store') }}" method="POST">
@@ -168,11 +189,7 @@
                                                     class="far fa-heart fa-2x"></i></button>
                                         </form>
 
-                                        <i class="far fa-star icon_avaliacao"></i>
-                                        <i class="far fa-star icon_avaliacao"></i>
-                                        <i class="far fa-star icon_avaliacao"></i>
-                                        <i class="far fa-star icon_avaliacao"></i>
-                                        <i class="far fa-star icon_avaliacao"></i>
+
                                     @endif
                                 </div>
                             </div>

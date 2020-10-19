@@ -7,8 +7,12 @@ use App\Event;
 
 class EventController extends Controller
 {
-    public function loadEvents(){
-        $events = Event::all();
+    public function loadEvents(Request $request){
+
+        // dd($request->quadra);
+        $events = Event::where('quadra_id', $request->quadra)->get();
+
+        // $events = Event::all();
 
         return response()->json($events);
     }
@@ -24,6 +28,13 @@ class EventController extends Controller
 
         $event->fill($request->all());
         $event->save();
+
+        return response()->json(true);
+    }
+
+    public function destroy(Request $request)
+    {
+        Event::where('id', $request->id)->delete();
 
         return response()->json(true);
     }

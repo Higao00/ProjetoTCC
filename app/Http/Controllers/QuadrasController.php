@@ -160,7 +160,7 @@ class QuadrasController extends Controller
                 'cidade' => mb_strtoupper($endereco->cidade),
                 'rua' => mb_strtoupper($endereco->rua),
                 'valor_aluguel' => $quadra->valor_aluguel,
-                'owner_id' => $user->name,
+                'owner_id' => $user->id,
                 'status' => $quadra->status,
                 'fotos' => $fotos->all()
             ];

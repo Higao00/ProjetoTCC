@@ -111,13 +111,13 @@
                                 <div class="endereco_avaliacao">
                                     <p class="endereco">{{ $quadra['rua'] }} - {{ $quadra['cidade'] }}
                                         {{ $quadra['estado'] }}</p>
-                                    <div class="avaliacao">
+                                    {{-- <div class="avaliacao">
                                         <i class="far fa-star icon_avaliacao"></i>
                                         <i class="far fa-star icon_avaliacao"></i>
                                         <i class="far fa-star icon_avaliacao"></i>
                                         <i class="far fa-star icon_avaliacao"></i>
                                         <i class="far fa-star icon_avaliacao"></i>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </a>
