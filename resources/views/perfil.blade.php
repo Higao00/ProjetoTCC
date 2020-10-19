@@ -34,7 +34,7 @@
 
             <!-- Avatar -->
             <div class="avatar mx-auto white">
-                <img src="{{ url('img/sem_foto2.jpg') }}" id="perfil" class="rounded-circle" alt="woman avatar">
+                <img src="{{ url('img/sem_foto2.png') }}" id="perfil" class="rounded-circle" alt="woman avatar">
             </div>
 
             <!-- Content -->

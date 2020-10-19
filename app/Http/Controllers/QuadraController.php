@@ -244,6 +244,7 @@ class QuadraController extends Controller
 
         $todas[] = [
             'titulo' => $quadra->titulo,
+            'status' => $quadra->status,
             'valorHora' => $quadra->valor_aluguel,
             'id' => $quadra->id,
             'rua' => $endereco->rua,
