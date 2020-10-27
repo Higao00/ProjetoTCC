@@ -302,10 +302,18 @@
                                 </li>
                             @endif
 
+                            @if (auth()->user()->permissao == 2 || auth()->user()->permissao == 3)
+                                <li class="nav-item suspenso">
+                                    <a href="{{ route('routeEventShow', Auth::user()->id) }}"
+                                        class="nav-link waves-effect bold-1"><i class="fas fa-eye mr-3"></i>H.Reservadas
+                                    </a>
+                                </li>
+                            @endif
+
                             @if (auth()->user()->permissao == 3)
                                 <li class="nav-item suspenso">
                                     <a href="{{ route('admin') }}" class="nav-link waves-effect bold-1"><i
-                                            class="fas fa-user-shield mr-3"></i>Acesso ao Admin
+                                            class="fas fa-window-restore mr-3"></i>Acesso ao Admin
                                     </a>
                                 </li>
                             @endif
@@ -371,6 +379,13 @@
                         <a href="{{ route('quadras.show', Auth::user()->id) }}"
                             class="list-group-item list-group-item-action waves-effect"><i
                                 class="fas fa-eye mr-3"></i>Suas Quadras
+                        </a>
+                    @endif
+
+                    @if (auth()->user()->permissao == 2 || auth()->user()->permissao == 3)
+                        <a href="{{ route('routeEventShow', Auth::user()->id) }}"
+                            class="list-group-item list-group-item-action waves-effect"><i
+                                class="fas fa-window-restore mr-3"></i>H.Reservadas
                         </a>
                     @endif
 
