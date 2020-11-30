@@ -22,6 +22,10 @@ Route::get('/home', function () {
     return view('home');
 })->name('home');
 
+Route::get('/melhoresAvaliadas', function () {
+    return view('melhoresAvaliadas');
+})->name('melhoresAvaliadas');
+
 Route::get('/cadastro-quadra', function () {
     return view('adicionarQuadras');
 })->name('cadastro-quadra');
@@ -32,6 +36,8 @@ Route::get('/fullcalendar', 'FullCalendarController@index')->name('calendar');
 Route::get('/load-events', 'EventController@loadEvents')->name('routeLoadEvents');
 Route::put('/event-update', 'EventController@update')->name('routeEventUpdate');
 Route::post('/event-store', 'EventController@store')->name('routeEventStore');
+
+Route::post('/grava-avaliacao', 'AvaliacaoController@gravar')->name('gravaAvaliacao');
 
 Route::get('/event-show/{user}', 'EventController@show')->name('routeEventShow');
 

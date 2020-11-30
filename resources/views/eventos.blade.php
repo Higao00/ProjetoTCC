@@ -23,7 +23,7 @@
                                     <th> {{ $evento['quadra'] }}</th>
                                     <th> {{ $evento['start'] }}</th>
                                     <th> {{ $evento['end'] }}</th>
-                                    <th> {{ $evento['valor'] }}</th>
+                                    <th> R$ {{ $evento['valor'] }}</th>
                                     <th> {{ $evento['nome_user'] }}</th>
                                     <th> {{ $evento['email_user'] }}</th>
                                     <th> {{ $evento['doc_user'] }}</th>

@@ -42,6 +42,18 @@
             border-color: #e64a19 !important;
         }
 
+        .favorito {
+            color: red;
+        }
+
+        .fa-star:hover {
+            cursor: pointer;
+        }
+
+        .fa-heart:hover {
+            cursor: pointer;
+        }
+
     </style>
 
     <style>
@@ -260,7 +272,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link waves-effect bold-1">
+                            <a href="{{ route('melhoresAvaliadas') }}" class="nav-link waves-effect bold-1">
                                 <i class="fas fa-star mr-3 suspenso"></i>MAIS AVALIADAS
                             </a>
                         </li>
@@ -455,9 +467,9 @@
                                         value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                     @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -472,9 +484,9 @@
                                         value="{{ old('documento') }}" required autocomplete="documento" autofocus>
 
                                     @error('documento')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -489,9 +501,9 @@
                                         value="{{ old('email') }}" required autocomplete="email">
 
                                     @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -506,9 +518,9 @@
                                         required autocomplete="new-password">
 
                                     @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -565,9 +577,9 @@
                                         value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                     @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -582,9 +594,9 @@
                                         required autocomplete="current-password">
 
                                     @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                 </div>
                             </div>
@@ -636,7 +648,8 @@
                             <p class="pt-3 pr-2"
                                 style="font-size: 18px; text-transform: uppercase; font-weight: bold; color: #000;">
                                 <i class="fas fa-sign-out-alt" style="color: #000!important;"></i> Deseja sair da
-                                sua conta ?</p>
+                                sua conta ?
+                            </p>
 
                             <button type="button" class="btn btn-success" data-dismiss="modal"
                                 aria-label="Close">Não</button>
@@ -761,12 +774,74 @@
 
     {{-- Macara dinheiro --}}
     <script>
+
+
         $(document).ready(function() {
             $("#valorAluguel").maskMoney({
                 prefix: "R$ ",
                 decimal: ".",
                 thousands: "."
             });
+        });
+
+        var quadra = $('#calendar').attr('id-quadra');
+        var user = $('#calendar').attr('id-usuario');
+
+
+        // SALVAR AVALIACAO
+        $('.fa-star').click(function() {
+
+            let valor = $(this).attr('value');
+
+            //limpo as estrelas
+            $('span.fa-star').each(function() {
+                $(this).removeClass('checked');
+            });
+
+            $.ajax({
+                url: '{{ route('gravaAvaliacao') }}',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                method: 'POST',
+                data: {
+                    id_user: user,
+                    id_quadra: quadra,
+                    avaliacao: valor,
+                },
+                dataType: 'json',
+                success: dados => {
+                    Swal.fire(
+                        'Sucesso ao Gravar a Avaliação !',
+                        '',
+                        'success'
+                    );
+
+                    $('span.fa-star').each(function(i) {
+                        if (i < valor) {
+                            $(this).addClass('checked');
+                        }
+                    });
+                },
+                error: erro => {
+                    Swal.fire(
+                        'Erro ao Gravar a Avaliação!',
+                        '',
+                        'error'
+                    );
+                }
+            });
+
+            // $.ajax({
+            //     url: 'control/avaliacao.php',
+            //     method: 'POST',
+            //     data: {
+            //         user: user,
+            //         receita: receita,
+            //         valor: valor,
+            //         manda_notificacao: 1
+            //     },
+            // });
         });
 
     </script>

@@ -107,28 +107,40 @@
 
     </style>
 
-    @php
+   <?php
+
+    use App\Avaliacoes;
+
     $quadra = $todas[0];
 
     if(Auth::check()){
         $idUser = auth()->user()->getId();
+
+        $aux = Avaliacoes::where('id_quadra',$quadra['id'])->where('id_user', $idUser)->get()->all();
+
+        if(empty($aux)){
+            $avaliacao = 0;
+        }else{
+            $avaliacao = $aux[0]->avaliacao;
+        }
+
+
     }else{
         $idUser = -1;
     }
 
     // dd($id);
-    @endphp
+    ?>
+
     <div class="container">
 
         <div class="card">
             <div class="card-body">
                 <!-- BEGIN nav-tabs -->
                 <ul class="nav nav-tabs" id="nav-tabs">
-                    <li class="nav-item"><a href="#agenda" class="nav-link active" data-toggle="tab"
-                            >Reservar</a>
+                    <li class="nav-item"><a href="#agenda" class="nav-link active" data-toggle="tab">Reservar</a>
                     </li>
-                    <li class="nav-item"><a href="#detalhes" class="nav-link " data-toggle="tab"
-                            >Detalhes</a></li>
+                    <li class="nav-item"><a href="#detalhes" class="nav-link " data-toggle="tab">Detalhes</a></li>
                 </ul>
                 <!-- END nav-tabs -->
                 <!-- BEGIN tab-content -->
@@ -168,18 +180,48 @@
                             <div class="endereco_avaliacao row">
                                 <div class="col-md-6">
                                     <p class="endereco">{{ $quadra['rua'] }} - {{ $quadra['cidade'] }}
-                                        {{ $quadra['estado'] }}</p>
+                                        {{ $quadra['estado'] }}
+                                    </p>
                                 </div>
 
-                                <div class="col-md-4">
-                                    <span class="fa fa-star checked" value="0"></span>
-                                    <span class="fa fa-star checked" value="0"></span>
-                                    <span class="fa fa-star checked" value="0"></span>
-                                    <span class="fa fa-star" value="0"></span>
-                                    <span class="fa fa-star" value="0"></span>
-                                </div>
 
-                                <div class="avaliacao col-md-2" >
+
+                                @if (auth()->user())
+
+
+                                    @php
+                                        if($avaliacao){
+                                            for ($i=1; $i <= 5 ; $i++) {
+
+                                                if($i <= $avaliacao){
+                                                    ?>
+                                                    <span class="fa fa-star checked" value="<?php echo($i) ?>"></span>
+                                                    <?php
+                                                }else{
+                                                    ?>
+                                                    <span class="fa fa-star" value="<?php echo($i) ?>"></span>
+                                                    <?php
+                                                }
+                                            }
+                                        }else{
+                                            for ($i=1; $i <= 5 ; $i++) {
+                                            ?>
+                                            <span class="fa fa-star" value="<?php echo($i) ?>"></span>
+                                            <?php
+                                            }
+                                        }
+
+                                    @endphp
+
+                                    {{-- <div class="col-md-4">
+                                        <span class="fa fa-star" value="1"></span>
+                                        <span class="fa fa-star" value="2"></span>
+                                        <span class="fa fa-star" value="3"></span>
+                                        <span class="fa fa-star" value="4"></span>
+                                        <span class="fa fa-star" value="5"></span>
+                                    </div> --}}
+                                @endif
+                                <div class="avaliacao col-md-2">
                                     @if (auth()->user())
                                         <form style="float: left; padding-right: 10px;"
                                             action="{{ route('favoritas.store') }}" method="POST">

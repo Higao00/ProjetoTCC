@@ -147,26 +147,26 @@
                         <div class="col-lg">
                             <select name="dataInicio" class="browser-default custom-select" required>
                                 <option><strong> DIA INICIO </strong></option>
+                                <option value="dom" @if($todas[0]['data_inicio'] == 'dom') selected @endif>Domingo</option>
                                 <option value="seg" @if($todas[0]['data_inicio'] == 'seg') selected @endif>Segunda</option>
                                 <option value="ter" @if($todas[0]['data_inicio'] == 'ter') selected @endif>Terça</option>
                                 <option value="qua" @if($todas[0]['data_inicio'] == 'qua') selected @endif>Quarta</option>
                                 <option value="qui" @if($todas[0]['data_inicio'] == 'qui') selected @endif>Quinta</option>
                                 <option value="sex" @if($todas[0]['data_inicio'] == 'sex') selected @endif>Sexta</option>
                                 <option value="sab" @if($todas[0]['data_inicio'] == 'sab') selected @endif>Sábado</option>
-                                <option value="dom" @if($todas[0]['data_inicio'] == 'dom') selected @endif>Domingo</option>
                             </select>
                         </div>
 
                         <div class="col-lg">
                             <select name="dataFim" class="browser-default custom-select" required>
                                 <option><strong> DIA FIM </strong></option>
+                                <option value="dom" @if($todas[0]['data_fim'] == 'dom') selected @endif>Domingo</option>
                                 <option value="seg" @if($todas[0]['data_fim'] == 'seg') selected @endif>Segunda</option>
                                 <option value="ter" @if($todas[0]['data_fim'] == 'ter') selected @endif>Terça</option>
                                 <option value="qua" @if($todas[0]['data_fim'] == 'qua') selected @endif>Quarta</option>
                                 <option value="qui" @if($todas[0]['data_fim'] == 'qui') selected @endif>Quinta</option>
                                 <option value="sex" @if($todas[0]['data_fim'] == 'sex') selected @endif>Sexta</option>
                                 <option value="sab" @if($todas[0]['data_fim'] == 'sab') selected @endif>Sábado</option>
-                                <option value="dom" @if($todas[0]['data_fim'] == 'dom') selected @endif>Domingo</option>
                             </select>
                         </div>
                         <br><br>
