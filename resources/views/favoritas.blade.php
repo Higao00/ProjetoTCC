@@ -93,8 +93,8 @@
     </style>
 
     <div class="container">
-        <div class="row">
-            @if (!empty($quadras))
+        @if (!empty($quadras))
+            <div class="row">
                 @foreach ($quadras as $quadra)
                     <div class="col-lg-6">
                         <div class="card">
@@ -111,23 +111,22 @@
 
                                     <div class="endereco_avaliacao">
                                         <p class="endereco">{{ $quadra['rua'] }} - {{ $quadra['cidade'] }}
-                                            {{ $quadra['estado'] }}</p>
-                                        <div class="avaliacao">
-                                            <i class="far fa-star icon_avaliacao"></i>
-                                            <i class="far fa-star icon_avaliacao"></i>
-                                            <i class="far fa-star icon_avaliacao"></i>
-                                            <i class="far fa-star icon_avaliacao"></i>
-                                            <i class="far fa-star icon_avaliacao"></i>
-                                        </div>
+                                            {{ $quadra['estado'] }}
+                                        </p>
+
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
                 @endforeach
-            @else
-
-            @endif
-        </div>
+            </div>
+        @else
+            <br>
+            <div class="card testimonial-card" style="margin-top: 1%;">
+                <h3 style="text-align: center"> <strong> NÃO ENCONTRAMOS NEM UMA FAVORITA. </strong> </h3>
+            </div>
+            <br>
+        @endif
     </div>
 @endsection

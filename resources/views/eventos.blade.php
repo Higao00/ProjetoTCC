@@ -36,7 +36,7 @@
 
             @else
                 <br>
-                <h2 style="text-align: center"> <strong> NÃO ENCONTRAMOS NEM UM AGENDAMENTO PARA HOJE. </strong> </h2>
+                <h3 style="text-align: center"> <strong> NÃO ENCONTRAMOS NEM UM AGENDAMENTO. </strong> </h3>
                 <br>
             @endif
         </div>

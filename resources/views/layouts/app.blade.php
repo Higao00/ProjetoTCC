@@ -54,6 +54,10 @@
             cursor: pointer;
         }
 
+        .list-group-item:hover{
+            background-color: #d1cdcd;
+        }
+
     </style>
 
     <style>

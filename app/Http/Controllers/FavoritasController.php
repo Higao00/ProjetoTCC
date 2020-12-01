@@ -90,14 +90,7 @@ class FavoritasController extends Controller
             $certo = Favoritas::destroy('id', $favoritas[0]['id']);
         }
 
-
-        if ($certo) {
-            $mensagem = 'success';
-        } else {
-            $mensagem = 'error';
-        }
-
-        return view("home")->with('mensagem', $mensagem);
+        return redirect()->route('home');
     }
 
     /**
@@ -108,7 +101,13 @@ class FavoritasController extends Controller
      */
     public function show($id)
     {
-        //
+        $favoritas = Favoritas::where(['id_user' => auth()->user()->id, 'id_quadra' => $id])->get();
+
+        if(!empty($favoritas->all())){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**

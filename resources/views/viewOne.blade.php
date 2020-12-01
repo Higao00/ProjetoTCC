@@ -90,17 +90,12 @@
             cursor: pointer;
         }
 
-        .favoritas {
-            list-style: none;
-            color: #dc3545;
+        .favoritas{
             border: 0px;
             background-color: #fff;
+            margin-top: -9px;
         }
-
-        .favoritas:hover {
-            color: #4285f4;
-        }
-
+        
         .checked {
             color: orange;
         }
@@ -153,7 +148,7 @@
                             <div class="carousel-inner">
 
                                 @foreach ($quadra['fotos'] as $key => $item)
-                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="max-height: 500px">
                                         <img class="d-block w-100" src="{{ url('images/' . $item['path_foto']) }}" />
                                     </div>
                                 @endforeach
@@ -221,17 +216,26 @@
                                         <span class="fa fa-star" value="5"></span>
                                     </div> --}}
                                 @endif
-                                <div class="avaliacao col-md-2">
+
+                                <div class="avaliacao" style="margin-left: 10px">
                                     @if (auth()->user())
                                         <form style="float: left; padding-right: 10px;"
-                                            action="{{ route('favoritas.store') }}" method="POST">
+                                            action="{{ route('favoritas.store') }}" id="favoritas_form" method="POST">
                                             @csrf
                                             <input type="hidden" name="id_quadra" value="{{ $quadra['id'] }}">
-                                            <button type="submit" class="favoritas"><i
-                                                    class="far fa-heart fa-2x"></i></button>
+
+                                            @if(app(App\Http\Controllers\FavoritasController::class)->show($quadra['id']))
+                                                <button type="submit" form="favoritas_form" class="favoritas">
+                                                    <img src="{{ url('img/coracao2.png') }}" width="auto" height="30" alt="">
+                                                </button>
+                                            
+                                                @else
+                                                    <button type="submit" form="favoritas_form" class="favoritas">
+                                                       <img src="{{ url('img/coracao.png') }}" width="auto" height="30" alt="">
+                                                    </button>
+
+                                            @endif
                                         </form>
-
-
                                     @endif
                                 </div>
                             </div>

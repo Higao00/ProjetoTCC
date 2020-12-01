@@ -46,16 +46,19 @@ class EventController extends Controller
 
     public function show($id)
     {
+        $aux[] = '';
         $eventos = Event::all();
         $quadras = Quadra::all();
-        $usuario = User::find($id);
+        $usuario = User::find(Auth()->id());
 
-        if ($usuario->status == 1 || $usuario->status == 2) {
+        // dd($quadras);
+        // dd($usuario);
+        // dd($eventos);
+
+        if ($usuario->permissao == 2 || $usuario->permissao == 3) {
             foreach ($quadras as $quadra) {
                 if ($quadra->owner_id == $id) {
                     $aux[] = $quadra->id;
-                } else {
-                    $aux = null;
                 }
             }
 
@@ -79,8 +82,8 @@ class EventController extends Controller
                         }
                     }
                 }
-            }else{
-                $todos = '';
+            } else {
+                $todos[] = '';
             }
         }
 
